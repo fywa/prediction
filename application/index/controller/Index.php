@@ -5,6 +5,6 @@ class Index extends Controller
 {
     public function index()
     {
-        return $this->fetch();
+        header("location:http://localhost/admin");
     }
 }

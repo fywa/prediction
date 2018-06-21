@@ -1,16 +1,25 @@
-<!-- 引入头文件 -->
-{include file="public/header" /}
-<!-- 可以扩展自定义引入文件 -->
-<link rel="shortcut icon" href="favicon.ico">
-<link href="__STATIC__/css/plugins/iCheck/custom.css" rel="stylesheet">
-</head>
-<!-- 引入菜单 -->
-{include file="public/menu" /}
-<!-- 引入导航 -->
-{include file="public/nav" /}
-<div id="J_iframe" class="gray-bg">
-<div class="row J_mainContent" id="content-main">
+<!DOCTYPE html>
+<html>
 
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--360浏览器优先以webkit内核解析-->
+
+
+    <title> - 主页示例</title>
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="__STATIC__/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__STATIC__/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+    <link href="__STATIC__/css/animate.css" rel="stylesheet">
+    <link href="__STATIC__/css/style.css?v=4.1.0" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
     <div class="wrapper wrapper-content">
         <div class="row">
             <div class="col-sm-10">
@@ -594,11 +603,10 @@
             </div>
         </div>
     </div>
-
-
-</div>
-</div>
-<!-- 自定义js -->
+    <!-- 全局js -->
+    <script src="__STATIC__/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__STATIC__/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="__STATIC__/js/plugins/layer/layer.min.js"></script>
     <!-- Flot -->
     <script src="__STATIC__/js/plugins/flot/jquery.flot.js"></script>
     <script src="__STATIC__/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
@@ -1703,5 +1711,6 @@
     });
 });
     </script>
-<!-- 引入底部js文件 -->
-{include file="public/footer" /}
+</body>
+
+</html>
