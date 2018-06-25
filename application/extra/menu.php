@@ -9,7 +9,7 @@ return
 			[
 				[
 					'controller' => 'Admin',
-					'icon' => 'glyphicon glyphicon-user',
+					'icon' => 'glyphicon glyphicon-exclamation-sign',
 					'title' => '管理员管理',
 					'href' => '#',
 					'list' => 
@@ -28,7 +28,7 @@ return
 				],
 				[
 					'controller' => 'Role',
-					'icon' => 'glyphicon glyphicon-user',
+					'icon' => 'glyphicon glyphicon-lock',
 					'title' => '角色管理',
 					'href' => '#',
 					'list' => 
@@ -47,7 +47,7 @@ return
 				],
 				[
 					'controller' => 'Rule',
-					'icon' => 'glyphicon glyphicon-user',
+					'icon' => 'glyphicon glyphicon-flag',
 					'title' => '规则管理',
 					'href' => '#',
 					'list' => 
@@ -79,10 +79,69 @@ return
 				],
 				[
 					'controller' => 'UserExpert',
-					'icon' => 'glyphicon glyphicon-user',
+					'icon' => 'glyphicon glyphicon-tag',
 					'title' => '标签列表',
 					'href' => 'UserExpert/add',
 					'list' => []
+				]
+			]
+		],
+		[
+			'title' => '内容管理',
+			'list' => 
+			[
+				[
+					'controller' => 'Prediction',
+					'icon' => 'glyphicon glyphicon-leaf',
+					'title' => '预测话题管理',
+					'href' => '#',
+					'list' => 
+					[
+						[
+							'action' => 'index',
+							'name' => '预测话题列表',
+							'href' => 'Prediction/index'							
+						],
+					]					
+				],
+				[
+					'controller' => 'Experience',
+					'icon' => 'glyphicon glyphicon-grain',
+					'title' => '经验分享管理',
+					'href' =>	'#',
+					'list' => 
+					[
+						[
+							'action' => 'index',
+							'name' => '经验分享管理',
+							'href' => 'Experience/index',
+						]
+					] 
+				]
+			]
+		],
+		[
+			'title' => '推荐位管理',
+			'list' => 
+			[
+				[
+					'controller' => 'Banner',
+					'icon' => 'glyphicon glyphicon-film',
+					'title' => '轮播图管理',
+					'href' => '#',
+					'list' => 
+					[
+						[
+							'action' => 'index',
+							'name' => '轮播图列表',
+							'href' => 'Banner/index'
+						],
+						[
+							'action' => 'add',
+							'name' => '添加图片',
+							'href' => 'Banner/add',
+						]
+					]
 				]
 			]
 		]

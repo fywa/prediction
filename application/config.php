@@ -157,7 +157,7 @@ return [
     // 显示错误信息
     'show_error_msg'         => false,
     // 异常处理handle类 留空使用 \think\exception\Handle
-    'exception_handle'       => '',
+    'exception_handle'       => '\app\common\exception\ExceptionHandler',
 
     // +----------------------------------------------------------------------
     // | 日志设置
@@ -237,4 +237,6 @@ return [
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
+    //接口调试混合模式
+    'api_debug'=>'true',
 ];

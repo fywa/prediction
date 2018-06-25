@@ -10,3 +10,16 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+//公用json返回
+function error($msg='',$code = 404 ,$errorcode = 0){
+	return json([
+		'msg' => $msg,
+		'errorcode' => $errorcode,
+	],$code);
+}
+function success($msg='',$data = []){
+	return json([
+		'msg' => $msg,
+		'errorcode' => 0,
+	],202);
+}
