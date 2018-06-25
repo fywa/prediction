@@ -50,6 +50,20 @@ class BaseValidate extends Validate
 		}
 
 	}
+	/**
+	 * 判断用户是否存在
+	 */
+	protected function isExist($value , $rule = '', $data = '', $field = '')
+	{
+		if(model('Admin')->where('username',$value)->find())
+		{
+			return true;
+		}else
+		{
+			return false;
+		}
+
+	}
 	public function getDataByRule($arrays)
 	{
 		if(array_key_exists('user_id',$arrays)||array_key_exists('uid',$arrays))

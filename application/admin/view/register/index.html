@@ -24,12 +24,6 @@
                 <div class="form-group">
                     <input type="password" class="form-control" id="repassword" placeholder="请再次输入密码" required="">
                 </div>
-                <div class="form-group text-left">
-                    <div class="checkbox i-checks">
-                        <label class="no-padding">
-                            <input type="checkbox"><i></i> 我同意注册协议</label>
-                    </div>
-                </div>
                 <button type="submit" class="btn btn-primary block full-width m-b" onclick="register();">注 册</button>
 
                 <p class="text-muted text-center"><small>已经有账户了？</small><a href="{:url('Login/index')}">点此登录</a>
@@ -42,6 +36,7 @@
     <script>
         var SCOPE = {
             'register_url':'{:url("Register/index")}',
+            'login_url':'{:url('Login/index')}',
             };
     </script>
     {include file="public/footer" /}

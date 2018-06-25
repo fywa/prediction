@@ -4,11 +4,15 @@ class Index extends Base
 {
 	public function index()
 	{
-		return $this->fetch();
+		return $this->fetch('',[
+			'title' => '首页'
+		]);
 	}
 	public function main()
 	{
-		return $this->fetch();
+		return $this->fetch('',[
+			'title' => '首页'
+		]);
 	}
 
 }

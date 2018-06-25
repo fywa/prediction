@@ -23,3 +23,16 @@ function success($msg='',$data = []){
 		'errorcode' => 0,
 	],202);
 }
+//分页函数
+function pagination($obj)
+{
+    if($obj)
+    {
+        $params = request()->param();
+        return '<div class="row">'.$obj->appends($params)->render().'</div>';
+    }
+    else
+    {
+        return '';
+    }
+}
