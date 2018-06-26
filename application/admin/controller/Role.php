@@ -1,85 +1,52 @@
 <?php
-
+/**
+ * @author xiaodong
+ */
 namespace app\admin\controller;
 
-use think\Controller;
-use think\Request;
 
-class Role extends Controller
+class Role extends Base
 {
+    public $obj;
+    public function _initialize()
+    {
+        $this->obj = model('Role');
+    }
     /**
-     * 显示资源列表
-     *
-     * @return \think\Response
+     * 角色列表
      */
     public function index()
     {
-        //
+        $co = input('get.status',1);
+        $list = $this->obj->getAllRole($co);
+        $this->assign([
+            'title' => '角色列表',
+            'list' => $list,
+            'status' => config('status.status'),
+            'co' => $co
+        ]);
+        return $this->fetch();
     }
-
     /**
-     * 显示创建资源表单页.
-     *
-     * @return \think\Response
+     * 添加角色
      */
-    public function create()
+    public function add()
     {
-        //
+        return $this->fetch('',[
+            'title' => '添加角色'
+        ]);
     }
-
     /**
-     * 保存新建的资源
-     *
-     * @param  \think\Request  $request
-     * @return \think\Response
+     * 更新状态
      */
-    public function save(Request $request)
+    public function status()
     {
-        //
-    }
-
-    /**
-     * 显示指定的资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function read($id)
-    {
-        //
-    }
-
-    /**
-     * 显示编辑资源表单页.
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * 保存更新的资源
-     *
-     * @param  \think\Request  $request
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * 删除指定资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function delete($id)
-    {
-        //
+        (validate('Role')->doCheck('status'));
+        $res = $this->obj->updateRoleStatus();
+        if(!$res)
+        {
+            return error('操作失败',config('json.serverError'),20081);
+        }
+        return success('操作成功');        
     }
 }

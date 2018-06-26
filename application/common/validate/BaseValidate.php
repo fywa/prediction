@@ -14,19 +14,24 @@ class BaseValidate extends Validate
 	 * @return [type] [boolean]
 	 * @author xiaodo 2017-12-17
 	 */
-	public function doCheck()
+	public function doCheck($scene = '')
 	{
 		$request = Request::instance();
 		$params = $request->param();
-
-		$result = $this->check($params);
+		if(empty($scene))
+		{
+			$result = $this->check($params);			
+		}else
+		{
+			$result = $this->scene($scene)->check($params);
+		}
 		if(!$result)
 		{
 			$data = array('msg'=>$this->error);
 			throw new ParameterException($data);
 		}
 
-	}	
+	}
 	protected function isPositiveInteger($value,$rule='',$data='',$field='')
 	{
 
@@ -57,10 +62,10 @@ class BaseValidate extends Validate
 	{
 		if(model('Admin')->where('username',$value)->find())
 		{
-			return true;
+			return false;
 		}else
 		{
-			return false;
+			return true;
 		}
 
 	}

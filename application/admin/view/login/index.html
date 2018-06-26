@@ -12,7 +12,7 @@
     <div class="signinpanel">
         <div class="row">
             <div class="col-sm-12">
-                <form onsubmit="return login();">
+                <form>
                     <h4 class="no-margins">登录：</h4>
                     <p class="m-t-md">登录到预言家CMS后台</p>
                     <input type="text" class="form-control uname" id="username" placeholder="用户名" />
@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-        <script>
+    <script>
         var SCOPE = {
             'login_url':'{:url("Login/index")}',
             'index_url':'{:url("Index/index")}',

@@ -20,9 +20,9 @@ class Register extends Controller
 			$data = input('post.');
 			if($data['password'] != $data['repassword'])
 			{
-				return error('两次填写的密码不一致',404,10061);
+				return error('两次填写的密码不一致',confg('json.commonError'),10061);
 			}
-			$data['salt'] = $this->code();
+			$data['salt'] = code();
 			$data['password'] = MD5(MD5($data['password'].'QianWen').$data['salt']);
 			$res = $this->admin->add($data);
 			if($res)
@@ -35,12 +35,5 @@ class Register extends Controller
 		return $this->fetch('',[
 			'title' => '预言家-注册'
 		]);
-	}
-	/**
-	 * 产生随机盐值
-	 */
-	public function code()
-	{
-		return mt_rand(100,10000);
 	}
 }

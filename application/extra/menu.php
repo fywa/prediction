@@ -20,6 +20,11 @@ return
 							'href' => 'Admin/index',
 						],
 						[
+							'action' => 'apply',
+							'name' => '申请列表',
+							'href' => 'Admin/apply'
+						],
+						[
 							'action' => 'add',
 							'name' => '添加管理员',
 							'href' => 'Admin/add'

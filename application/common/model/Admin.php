@@ -18,9 +18,9 @@ class Admin extends Model
     /**
      * 添加管理员
      */
-    public function add($data)
+    public function add($data,$status = 0)
     {
-    	$data['status'] = 0;
+    	$data['status'] = $status;
     	return $this->allowField(true)
     				->save($data);
     }
@@ -31,6 +31,7 @@ class Admin extends Model
     {
         if($key)
         {
+            //复合查询
             $con['id'] = ['like',"%{$key}%"];
             $con['username'] = ['like',"%{$key}%"];
             $con['nickname'] = ['like',"%{$key}%"];
@@ -42,9 +43,27 @@ class Admin extends Model
                         ->whereOr('email','like',"%{$key}%")
                         ->where('status','neq',0)
                         ->paginate();
-            // print_r($this->getLastSql());exit;
         }
         return $this->where('status','neq',0)
                     ->paginate();
+    }
+    /**
+     * 通过状态获取管理员
+     */
+    public function getAdminByStatus($status = 0)
+    {
+        $data['status'] = $status;
+        $order['id'] = 'asc';
+        return $this->where($data)
+                    ->order($order)
+                    ->paginate(); 
+    }
+    /**
+     * 修改管理员状态
+     */
+    public function updateAdminStatus()
+    {
+        $data = input('get.');
+        return $this->save(['status' => $data['status']],['id' => $data['id']]);
     }
 }
