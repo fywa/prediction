@@ -29,6 +29,7 @@ function success($msg='',$data = [], $requestUrl = ''){
     }
 	return json([
 		'msg' => $msg,
+		'data' => $data,
 		'errorcode' => 0,
         'request_url'=> $requestUrl
 	],202);

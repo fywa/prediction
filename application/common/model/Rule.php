@@ -5,27 +5,31 @@
  */
 namespace app\common\model;
 
-use think\Model;
-
-class Rule extends Model
+class Rule extends BaseModel
 {
-	private $res = [];
-	public function pritree() 
+	public $res = [];
+	public function getAllRule($status = 1) 
 	{
-		$data = $this->select();
-		$this->resort($data);
+		$where['status'] = $status;
+		$data = $this->where($where)
+					 ->select();
+		$this->tree($data);
 		return $this->res;
 	}
-
-	public function resort($data,$pId = 0,$level =  0) 
+    public function getRuleByStatus($status = 1)
+    {
+        $where['status'] = $status;
+        return $this->where($where)->select();
+    }
+	public function tree($data,$pId = 0,$level =  0) 
 	{
 		foreach ($data as $k => $v) 
 		{
 			if($v['pid'] == $pId)
 			{
 				$v['level'] = $level;
-				$this->$res[] = $v;
-				$this->resort($data,$v['id'],$level+1);
+				$this->res[] = $v;
+				$this->tree($data,$v['id'],$level+1);
 			}
 		}
 	}
@@ -33,7 +37,19 @@ class Rule extends Model
 	{
 		$where['status'] = 1;
 		return $this->where($where)
-					->where('id','id',$ids)
+					->where('id','in',$ids)
 					->column('name');
 	}
+	/**
+     * 获取更新条件
+     */
+	public function getAddData()
+    {
+        $where = [
+            'status' => 1,
+            'pid' => 0,
+        ];
+        return $this->where($where)
+                     ->select();
+    }
 }

@@ -9,10 +9,15 @@ use app\common\exception\ParameterException;
 */
 class BaseValidate extends Validate
 {
+    protected $rule=[
+        ['id','require|isPositiveInteger','参数缺少|id参数错误'],
+    ];
+
+    protected $scene = [
+        'edit' => ['id']
+    ];
 	/**
-	 * [doCheck 用于接受参数进行validaet校验]
-	 * @return [type] [boolean]
-	 * @author xiaodo 2017-12-17
+     * 公用检查
 	 */
 	public function doCheck($scene = '')
 	{
@@ -32,6 +37,10 @@ class BaseValidate extends Validate
 		}
 
 	}
+
+    /**
+     * 检查是否为合法的int类型
+     */
 	protected function isPositiveInteger($value,$rule='',$data='',$field='')
 	{
 

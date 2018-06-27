@@ -9,8 +9,6 @@ class Base extends Controller
     protected $menu = null;//目录菜单
     public $account;
     public $admin;
-    public $role;
-    public $rule;
     /**
      * 基类初始化
      */
@@ -70,5 +68,68 @@ class Base extends Controller
         }
         return $this->account;
 
+    }
+    /**
+     * 更新状态
+     */
+    public function status()
+    {
+        (validate(request()->controller())->doCheck('status'));
+        $res = $this->obj->updateStatus();
+        if(!$res)
+        {
+            return error('操作失败',config('json.serverError'),20081);
+        }
+        return success('操作成功');
+    }
+
+    /**
+     * 编辑
+     */
+    public function edit()
+    {
+        //post 逻辑
+        if(request()->isPost())
+        {
+            validate(request()->controller())->doCheck('edit');
+            $res = model(request()->controller())->doEdit();
+            if($res)
+            {
+               return success('更新成功');
+            }
+            return error('更新失败',config('json.commonError'),10021);
+        }
+        $id = input('get.id');
+        if(empty($id))
+        {
+            $this->error('缺少id');
+        }
+        $list = model(request()->controller())->getListById($id);
+        return $this->fetch('',[
+            'title' => '编辑',
+            'list' => $list
+        ]);
+    }
+    /**
+     * 添加
+     */
+    public function add()
+    {
+        //post 逻辑
+        if(request()->isPost())
+        {
+            validate(request()->controller())->doCheck('add');
+            $res = model(request()->controller())->doAdd();
+            if($res)
+            {
+                return success('添加成功');
+            }
+            return error('添加失败',config('json.commonError'),10022);
+        }
+        $list = model(request()->controller())->getAddData();
+        return $this->fetch('',[
+            'title' => '添加',
+            'list' => $list
+        ]);
     }
 }

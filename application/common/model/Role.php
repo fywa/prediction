@@ -27,5 +27,14 @@ class Role extends Model
     {
         $data = input('get.');
         return $this->save(['status' => $data['status']],['id' => $data['id']]);
-    }    
+    }
+    /**
+     * 获取更新条件
+     */
+    public function getAddData()
+    {
+        return $this->where($where)
+        return $this->where($where)
+            ->select();
+    }
 }
