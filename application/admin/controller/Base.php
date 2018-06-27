@@ -75,7 +75,7 @@ class Base extends Controller
     public function status()
     {
         (validate(request()->controller())->doCheck('status'));
-        $res = $this->obj->updateStatus();
+        $res = model(request()->controller())->updateStatus();
         if(!$res)
         {
             return error('操作失败',config('json.serverError'),20081);
@@ -131,5 +131,18 @@ class Base extends Controller
             'title' => '添加',
             'list' => $list
         ]);
+    }
+    /**
+     * 更新状态
+     */
+    public function del()
+    {
+        (validate(request()->controller())->doCheck('del'));
+        $res = model(request()->controller())->doDel();
+        if(!$res)
+        {
+            return error('操作失败',config('json.serverError'),20081);
+        }
+        return success('操作成功');
     }
 }

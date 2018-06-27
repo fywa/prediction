@@ -14,7 +14,8 @@ class Rule extends BaseValidate
 	protected $scene = [
 		'status' => ['id','status'],
 		'add' => ['pid','title','name'],
-        'edit' => ['id','name','title']
+        'edit' => ['id','name','title'],
+        'del' => ['id']
 	];
 	
 	/**

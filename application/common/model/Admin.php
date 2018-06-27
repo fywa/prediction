@@ -2,9 +2,8 @@
 
 namespace app\common\model;
 
-use think\Model;
 
-class Admin extends Model
+class Admin extends BaseModel
 {
 	/**
 	 * 通过名字获取管理员
@@ -65,5 +64,23 @@ class Admin extends Model
     {
         $data = input('get.');
         return $this->save(['status' => $data['status']],['id' => $data['id']]);
+    }
+    /**
+     * role外键
+     */
+    public function role()
+    {
+        return $this->belongsTo('Role','role_id','id');
+    }
+    /**
+     * 获取更新的条件
+     */
+    public function getListById($id = 0)
+    {
+        $where['status'] = 1;
+        $role = model('role')->getAllRole();
+        $admin =  $this->where($where)->find($id);
+        $admin['role'] = $role;
+        return $admin;
     }
 }

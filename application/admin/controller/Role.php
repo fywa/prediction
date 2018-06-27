@@ -28,15 +28,6 @@ class Role extends Base
         return $this->fetch();
     }
     /**
-     * 添加角色
-     */
-    public function add()
-    {
-        return $this->fetch('',[
-            'title' => '添加角色'
-        ]);
-    }
-    /**
      * 更新状态
      */
     public function status()

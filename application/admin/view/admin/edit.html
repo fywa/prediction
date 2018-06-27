@@ -27,31 +27,52 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <form id="x-form" class="form-horizontal m-t" >
+                    <form class="form-horizontal m-t" id="x-form" action="#">
+
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">角色名称:</label>
+                            <label class="col-sm-3 control-label">所属权限组：</label>
                             <div class="col-sm-8">
-                                <input id="name" name="name" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error" placeholder="请输入权限名称">
+
+                                <select class="input-sm form-control input-s-sm inline" name="role_id">
+                                    {volist name="list.role" id="vo"}
+                                    <option value="{$vo.id}" {if condition="$vo.id == $list.role_id"} selected="selected"{/if}>{$vo.name}</option>
+                                    {/volist}
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">用户名：</label>
+                            <div class="col-sm-8">
+                                <input type="hidden" name="id" value="{$list.id}">
+                                <input id="username" name="username" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error" value="{$list.username}">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">拥有权限</label>
+                            <label class="col-sm-3 control-label">昵称：</label>
                             <div class="col-sm-8">
-
-                                <div class="checkbox">
-                                    {volist name="list" id="vo"}
-                                    <label class="checkbox" for="addBehaviorOnToastClick">
-                                        <input id="addBehaviorOnToastClick" type="checkbox" name="rules[]" value="{$vo.id}" class="input-mini">
-                                        {if condition="$vo['pid'] neq 0"}|{/if}<?php echo str_repeat('-', $vo['level']*8);?>{$vo.title}
-                                    </label>
-                                    {/volist}
-                                </div>
-
+                                <input id="nickname" name="nickname" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error" value="{$list.nickname}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">E-mail：</label>
+                            <div class="col-sm-8">
+                                <input id="email" name="email" value="{$list.email}" class="form-control" type="email">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-8 col-sm-offset-3">
-                                <button  class="btn btn-primary " onclick="addData();return false;">提交</button>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" class="checkbox" id="agree" name="agree"> 我已经认真阅读并同意《H+使用协议》
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <button   class="btn btn-primary " onclick="editData();return false;">提交</button>
                             </div>
                         </div>
                     </form>

@@ -35,6 +35,14 @@ class BaseModel extends Model
         return $this->allowField(true)->save($data,['id' => $id]);
     }
     /**
+     * 删除
+     */
+    public function doDel()
+    {
+        $id = input('get.id');
+        return $this->destroy($id);
+    }
+    /**
      * 添加
      */
     public function doAdd()

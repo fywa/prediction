@@ -10,11 +10,11 @@ use app\common\exception\ParameterException;
 class BaseValidate extends Validate
 {
     protected $rule=[
-        ['id','require|isPositiveInteger','参数缺少|id参数错误'],
+        ['id','require|isPositiveInteger','参数缺少id|id参数错误'],
     ];
 
     protected $scene = [
-        'edit' => ['id']
+        'edit' => ['id'],
     ];
 	/**
      * 公用检查
