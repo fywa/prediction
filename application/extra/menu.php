@@ -3,6 +3,31 @@ return
 [
 	'menu' => 
 	[
+        [
+            'title' => '推荐位管理',
+            'list' =>
+                [
+                    [
+                        'controller' => 'Featured',
+                        'icon' => 'glyphicon glyphicon-film',
+                        'title' => '轮播图管理',
+                        'href' => '#',
+                        'list' =>
+                            [
+                                [
+                                    'action' => 'index',
+                                    'name' => '轮播图列表',
+                                    'href' => 'Featured/index'
+                                ],
+                                [
+                                    'action' => 'add',
+                                    'name' => '添加图片',
+                                    'href' => 'Featured/add',
+                                ]
+                            ]
+                    ]
+                ]
+        ],
 		[
 			'title' => '权限管理',
 			'list' => 
@@ -125,30 +150,6 @@ return
 				]
 			]
 		],
-		[
-			'title' => '推荐位管理',
-			'list' => 
-			[
-				[
-					'controller' => 'Banner',
-					'icon' => 'glyphicon glyphicon-film',
-					'title' => '轮播图管理',
-					'href' => '#',
-					'list' => 
-					[
-						[
-							'action' => 'index',
-							'name' => '轮播图列表',
-							'href' => 'Banner/index'
-						],
-						[
-							'action' => 'add',
-							'name' => '添加图片',
-							'href' => 'Banner/add',
-						]
-					]
-				]
-			]
-		]
+
 	]
 ];

@@ -51,4 +51,11 @@ class BaseModel extends Model
         $data['status'] = 0;
         return $this->allowField(true)->save($data);
     }
+    /**
+     * 获取所有列表
+    */
+    public function getAllList($where = [])
+    {
+        return $this->where($where)->paginate(); 
+    }
 }
