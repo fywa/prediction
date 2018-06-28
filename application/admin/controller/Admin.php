@@ -5,6 +5,7 @@ class Admin extends Base
 	public $obj;
 	public function _initialize()
 	{
+	    parent::_initialize();
 		$this->obj = model('Admin');
 	}
 	public function index()

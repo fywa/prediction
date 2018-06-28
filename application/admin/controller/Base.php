@@ -19,7 +19,6 @@ class Base extends Controller
         $this->assign('menu',$this->menu);
         $this->isLogin();
         $this->checkRule();
-
     }
     /**
      *权限检查
@@ -28,7 +27,7 @@ class Base extends Controller
     {
         $adminAcount = $this->getLoginUser();
         $this->assign('adminId',$adminAcount->id);
-        if (request()->module() == 'Admin' && request()->controller() == 'Admin' && request()->action() == 'logout') 
+        if (request()->controller() == 'Admin' && request()->action() == 'logout')
         {
             return true;
         }

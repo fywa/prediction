@@ -4,6 +4,7 @@
  * @date(2018.6.25)
  */
 namespace app\admin\controller;
+use think\Collection;
 use think\Controller;
 class Login extends Controller
 {
@@ -56,17 +57,21 @@ class Login extends Controller
     public function getPri($roleId)
     {
 	    $roleres = model('Role')->getRoleById($roleId);
-	    if ($roleres['rules'] =='*') 
+	    if ($roleres['rules'] =='*')
 	    {
 	      session('rules','*');
-	    }else
+	    }else if(empty($roleres))
+        {
+            $this->error("账号未激活");
+        }
+	    else
 	    {
-	        $rules = model('Rule')->getRuleByIds($roleres);
+	        $rules = model('Rule')->getRuleByIds($roleres['rules']);
 	        $_pris = [];
 	        foreach ($rules as $k => $v) {
-	          $_pris[] = $v['name'];
+	          $_pris[] = $v;
 	        }
 	        session('rules',$_pris);
-	      } 	
+	      }
     }	
 }

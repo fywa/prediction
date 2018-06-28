@@ -10,6 +10,7 @@ class Role extends Base
     public $obj;
     public function _initialize()
     {
+        parent::_initialize();
         $this->obj = model('Role');
     }
     /**
