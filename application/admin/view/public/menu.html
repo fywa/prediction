@@ -41,7 +41,7 @@
 <!-- 二级菜单 -->
                                 {volist name="vo.list" id="slist"}
                                     <li>
-                                        <a class="J_menuItem" {empty name="slist.list"}href="{$slist.href}"{/empty}>
+                                        <a class="J_menuItem" {empty name="slist.list"}href="{:url($slist.href)}"{/empty}>
                                          <!-- <span class="{$slist.icon}"></span> -->
                                          <i class="{$slist.icon}"></i>
                                          <span class="nav-label">{$slist.title}</span>

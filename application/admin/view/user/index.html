@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+{include file="public/header" /}
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+            <form action="{:url('index')}" method="GET">
+                            <div class="input-group">
+                                <input placeholder="{$keywords}" class="input form-control" name="keywords" type="text">
+                                <span class="input-group-btn">
+                                <button type="submit" class="btn btn btn-primary"> 
+                                <i class="fa fa-search"></i> 搜索
+                                </button>
+                                </span>
+                            </div>                
+            </form>
+
+        <div class="row">
+
+
+
+            {volist name="list" id="vo"}
+            <div class="col-sm-4">
+                <div class="contact-box">
+                    <a href="{:url('detail',['id' => $vo.id])}">
+                        <div class="col-sm-4">
+                            <div class="text-center">
+                                <img alt="image" class="img-circle m-t-xs img-responsive" src="__STATIC__/img/a4.jpg">
+                                <div class="m-t-xs font-bold">{$vo.username}</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <h3><strong>{$vo.username}</strong></h3>
+                            <p><i class="fa fa-map-marker"></i> {$vo.job}</p>
+                            <address>
+                            <strong>Baidu, Inc.</strong><br>
+                            E-mail:xxx@baidu.com<br>
+                            Weibo:<a href="">http://weibo.com/xxx</a><br>
+                            <abbr title="Phone">Tel:</abbr> (123) 456-7890
+                        </address>
+                        </div>
+                        <div class="clearfix"> 
+                            <button class="btn btn-primary " x-id="{$vo.id}" onclick="delData(this);"  type="button"><i class="fa fa-close"></i>&nbsp;删除
+                                            
+                            </button>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {/volist}
+
+
+
+        </div>
+        {:pagination($list)}
+    </div>
+    <script src="__STATIC__/js/plugins/layer/layer.min.js"></script>    
+    <script type="text/javascript" src="__STATIC__/js/common.js"></script>
+    <script src="__STATIC__/js/bootstrap.min.js?v=3.3.6"></script>
+    <!-- 自定义js -->
+    <script src="__STATIC__/js/content.js?v=1.0.0"></script>
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('.contact-box').each(function () {
+                animationHover(this, 'pulse');
+            });
+        });
+    </script>
+
+    
+    
+
+</body>
+
+</html>
