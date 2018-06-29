@@ -1,0 +1,84 @@
+{include file="public/header" /}
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="wrapper wrapper-content animated fadeInUp">
+        <div class="row">
+                <div class="col-sm-12">
+                    <div class="ibox-title">
+                        <h5>{$title}</h5>
+<!--                         <div class="ibox-tools">
+                            <a href="projects.html" class="btn btn-primary btn-xs">创建新项目</a>
+                        </div> -->
+                    </div>                    
+                    <div class="wrapper wrapper-content animated fadeInUp">
+                        <ul class="notes">
+                            {volist name="list" id="vo"}
+                            <li>
+                                <div>
+                                    <small>{$vo.create_time}</small>
+                                    <h4>{$vo.username}</h4>
+                                    <p>{$vo.name}</p>                              
+                                    <a href="{:url('edit',['id' => $vo.id])}" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> 编辑 </a>                       
+                                </div>
+                            </li>
+                            {/volist}
+                        </ul>
+
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <!-- 全局js -->
+
+    {include file="public/footer" /}
+    <script type="text/javascript">
+            var SCOPE = {
+            'status_url':'{:url("status")}',
+            };
+
+        
+    </script>
+
+    <!-- 自定义js -->
+    <script src="__STATIC__/js/content.js?v=1.0.0"></script>
+
+
+    <script>
+        $(document).ready(function(){
+
+            $('#loading-example-btn').click(function () {
+                btn = $(this);
+                simpleLoad(btn, true)
+
+                // Ajax example
+//                $.ajax().always(function () {
+//                    simpleLoad($(this), false)
+//                });
+
+                simpleLoad(btn, false)
+            });
+        });
+
+        function simpleLoad(btn, state) {
+            if (state) 
+            {
+                btn.children().addClass('fa-spin');
+                btn.contents().last().replaceWith(" Loading");
+            } else 
+            {
+                setTimeout(function () {
+                    btn.children().removeClass('fa-spin');
+                    btn.contents().last().replaceWith(" Refresh");
+                }, 2000);
+            }
+        }
+    </script>
+
+    
+
+    </body>
+</html>

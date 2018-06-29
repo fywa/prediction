@@ -155,7 +155,7 @@ return
 					'controller' => 'UserExpert',
 					'icon' => 'glyphicon glyphicon-tag',
 					'title' => '标签列表',
-					'href' => 'UserExpert/add',
+					'href' => 'UserExpert/index',
 					'list' => []
 				]
 			]
