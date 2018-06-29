@@ -5,13 +5,13 @@
  */
 namespace app\admin\controller;
 
-class Prediction extends Base
+class Experience extends Base
 {
 	private $obj = null;
 	public function _initialize()
 	{
 		parent::_initialize();
-		$this->obj = model('Prediction');
+		$this->obj = model(request()->controller());
 	}
 	/**
 	 * 预测列表
@@ -21,7 +21,7 @@ class Prediction extends Base
     	$keywords = input('get.keywords');
     	$list = $this->obj->getAllList(['status' => 1]);
    		return $this->fetch('',[
-   			'title' => '预测列表',
+   			'title' => '经验分享列表',
    			'list' => $list,
    			'key' => $keywords == '' ?'请输入关键词':$keywords,
    		]);
@@ -33,7 +33,7 @@ class Prediction extends Base
 	{
 		$list = $this->obj->getAllList(['status' => 0]);
 		return $this->fetch('',[
-			'title' => '预测申请',
+			'title' => '经验申请',
 			'list' => $list
 		]);
 	}

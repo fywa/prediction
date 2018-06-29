@@ -58,4 +58,11 @@ class BaseModel extends Model
     {
         return $this->where($where)->paginate(); 
     }
+    /**
+     * 关联用户表数据
+     */
+    public function user()
+    {
+        return $this->belongsTo('User','user_id','id')->bind('username');
+    }    
 }

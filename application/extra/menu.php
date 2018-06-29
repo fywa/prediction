@@ -130,7 +130,12 @@ return
 							'action' => 'index',
 							'name' => '经验分享管理',
 							'href' => 'Experience/index',
-						]
+						],
+						[
+							'action' => 'apply',
+							'name' => '审核列表',
+							'href' => 'Experience/apply'
+						],						
 					] 
 				]
 			]

@@ -1,10 +1,17 @@
 <?php
-
+/**
+ * @author xiaodong
+ * @date(2018.6.29 10:02)
+ */
 namespace app\common\model;
 
-use think\Model;
 
-class Experience extends Model
+class Experience extends BaseModel
 {
-    //
+    
+    public function getAllList($where = [])
+    {
+    	return $this->with('user')->where($where)->paginate();
+
+    }
 }
