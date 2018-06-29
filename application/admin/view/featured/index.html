@@ -1,6 +1,5 @@
 {include file="public/header" /}
-
-</head>
+<link href="__STATIC__/css/plugins/blueimp/css/blueimp-gallery.min.css" rel="stylesheet"></head>
 
 <body class="gray-bg">
 
@@ -53,7 +52,20 @@
                                 <td>{$vo.name}</td>
                                 <td>{$vo.description}</td>
                                 <td>
-                                <img src="{$vo.img}" width="150" height="150">
+                                    <div class="lightBoxGallery">
+                                        <a href="{$vo.img}" title="图片" data-gallery="">
+                                        <img src="{$vo.img}" width="150" height="150">
+                                        </a>
+                                        <div id="blueimp-gallery" class="blueimp-gallery">
+                                            <div class="slides"></div>
+                                            <h3 class="title"></h3>
+                                            <a class="prev">‹</a>
+                                            <a class="next">›</a>
+                                            <a class="close">×</a>
+                                            <a class="play-pause"></a>
+                                            <ol class="indicator"></ol>
+                                        </div>
+                                    </div>
                                 </td>
                                 <td>{$vo.url}</td>
                                 <td>{$vo.update_time}</td>
@@ -100,7 +112,7 @@
 
 <!-- 自定义js -->
 <script src="__STATIC__/js/content.js?v=1.0.0"></script>
-
+    <script src="__STATIC__/js/plugins/blueimp/jquery.blueimp-gallery.min.js"></script>
 
 <script>
     $(document).ready(function(){
