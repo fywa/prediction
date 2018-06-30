@@ -4,7 +4,7 @@ return
 	'menu' => 
 	[
         [
-            'title' => '推荐位管理',
+            'title' => '推荐管理',
             'list' =>
                 [
                     [

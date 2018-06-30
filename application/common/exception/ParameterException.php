@@ -10,3 +10,6 @@ class ParameterException extends BaseException
 	public $msg='param error';	
 	public $errorCode=10006;	
 }
+
+
+
