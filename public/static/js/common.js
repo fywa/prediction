@@ -55,14 +55,14 @@ function updateStatus(value)
 //公用修改
 function editData()
 {
-    url = COMMON.edit_url;
+    url = SCOPE.edit_url;
     data = $("#x-form").serializeArray();
     request(url,data,'post','back');
 }
 //公用添加
 function addData()
 {
-    url = COMMON.add_url;
+    url = SCOPE.add_url;
     data = $("#x-form").serializeArray();
     request(url,data,'post','back');
 
@@ -70,7 +70,7 @@ function addData()
 //公共删除
 function delData(value)
 {
-    url = COMMON.del_url;
+    url = SCOPE.del_url;
     data = {'id':$(value).attr('x-id')}
     layer.confirm('确认要删除么？', {
         btn: ['确认','取消'] //按钮
