@@ -47,30 +47,6 @@ class Admin extends Base
 
 	}
 	/**
-	 * 管理员申请
-	 */
-	public function apply()
-	{
-		$list = $this->obj->getAdminByStatus(0);
-		return $this->fetch('',[
-			'title' => '管理员申请',
-			'list' => $list
-		]);
-	}
-	/**
-	 * 修改状态
-	 */
-	public function status()
-	{
-		(validate('Admin')->doCheck('status'));
-		$res = $this->obj->updateAdminStatus();
-		if(!$res)
-		{
-			return error('操作失败',config('json.serverError'),20081);
-		}
-		return success('操作成功');
-	}
-	/**
 	 *退出登录
 	 * */
 	public function logOut()

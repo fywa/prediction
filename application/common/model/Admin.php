@@ -47,25 +47,6 @@ class Admin extends BaseModel
                     ->paginate();
     }
     /**
-     * 通过状态获取管理员
-     */
-    public function getAdminByStatus($status = 0)
-    {
-        $data['status'] = $status;
-        $order['id'] = 'asc';
-        return $this->where($data)
-                    ->order($order)
-                    ->paginate(); 
-    }
-    /**
-     * 修改管理员状态
-     */
-    public function updateAdminStatus()
-    {
-        $data = input('get.');
-        return $this->save(['status' => $data['status']],['id' => $data['id']]);
-    }
-    /**
      * role外键
      */
     public function role()

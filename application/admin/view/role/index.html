@@ -51,7 +51,7 @@
                                         <td>{$vo.rules}</td>
                                         {if condition="$vo.status ==1"}
                                         <td class="project-status">
-                                            <span class="label label-primary" x-id="{$vo.id}" x-status="0" onclick="updateRoleStatus(this);" style="cursor: pointer">启用</span>
+                                            <span class="label label-primary" x-id="{$vo.id}" x-status="0" onclick="updateStatus(this);" style="cursor: pointer">启用</span>
                                         </td>
                                        <td>
 
@@ -65,7 +65,7 @@
                                         </td>
                                         <td>
 
-                                            <button  x-id="{$vo.id}" x-status="1" onclick="updateRoleStatus(this);" class="btn btn-primary " type="button"><i class="fa fa-check">
+                                            <button  x-id="{$vo.id}" x-status="1" onclick="updateStatus(this);" class="btn btn-primary " type="button"><i class="fa fa-check">
                                                 
                                             </i>&nbsp;通过
                                             </button>

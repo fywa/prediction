@@ -19,7 +19,7 @@ class Experience extends Base
     public function index()
     {
     	$keywords = input('get.keywords');
-    	$list = $this->obj->getAllList(['status' => 1]);
+    	$list = $this->obj->getAllListRelateUser(['status' => 1]);
    		return $this->fetch('',[
    			'title' => '经验分享列表',
    			'list' => $list,
@@ -31,7 +31,7 @@ class Experience extends Base
 	*/
 	public function apply()
 	{
-		$list = $this->obj->getAllList(['status' => 0]);
+		$list = $this->obj->getAllListRelateUser(['status' => 0]);
 		return $this->fetch('',[
 			'title' => '经验申请',
 			'list' => $list

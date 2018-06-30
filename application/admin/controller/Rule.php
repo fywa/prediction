@@ -27,7 +27,7 @@ class Rule extends Base
         {
             $list = $this->obj->getAllRule($co);
         }else{
-            $list = $this->obj->getRuleByStatus(0);
+            $list = $this->obj->getAlllist(['status' => 0]);
         }
         $this->assign([
             'title' => '权限列表',

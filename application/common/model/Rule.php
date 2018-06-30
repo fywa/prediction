@@ -16,11 +16,6 @@ class Rule extends BaseModel
 		$this->tree($data);
 		return $this->res;
 	}
-    public function getRuleByStatus($status = 1)
-    {
-        $where['status'] = $status;
-        return $this->where($where)->select();
-    }
 	public function tree($data,$pId = 0,$level =  0) 
 	{
 		foreach ($data as $k => $v) 

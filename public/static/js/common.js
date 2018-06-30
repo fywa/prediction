@@ -9,91 +9,41 @@ function dialogmsg(str){
 }
 // 注册请求
 function register(){
-     $.ajax({
-         type:'post',
-         url:SCOPE.register_url,
-         data:{'username':$('#username').val(),'password':$('#password').val(),'repassword':$('#repassword').val()},
-         success:function(data){
-            dialogmsg(data.msg);
-                setTimeout(
-                        ()=>
-                        {
-                        window.location.href=SCOPE.login_url;                    
-                        },1000)
-         },
-         'error':function(data){
-            dialogmsg(data.responseJSON.msg);
-        }
-    })
+    url = SCOPE.register_url;
+    data = $("#x-form").serializeArray();
+    request(url,data,'post','back');
 }
 // 登陆请求
 function login(){
-     $.ajax({
-         type:'post',
-         url:SCOPE.login_url,
-         data:{'username':$('#username').val(),'password':$('#password').val()},
-         success:function(data){
-            dialogmsg(data.msg);
-                setTimeout(
-                        ()=>
-                        {
-                        window.location.href=SCOPE.index_url;                    
-                        },1000)
-         },
-         'error':function(data){
-            dialogmsg(data.responseJSON.msg);
-        }
-    })
+    url = SCOPE.login_url;
+    data = $("#x-form").serializeArray();
+    request(url,data,'post');
 }
 // 封装公用的请求函数
-function request(url,data,type)
+function request(url,data,type,action)
 {
      $.ajax({
          type:type,
          url:url,
          data:data,
          success:function(data){
+            if (action == 'back')
+            {
                 layer.msg(data.msg,{icon:1,time: 1000}, () => {
-                    location.reload();
-                });
-
+                    window.history.go(-1);                           
+                });  
+            } else
+            {
+                layer.msg(data.msg,{icon:1,time: 1000}, () => {
+                    location.reload();                        
+                });                  
+            }
+              
          },
          'error':function(data){
             layer.msg(data.responseJSON.msg);
         }
     })    
-}
-// 封装公用的请求函数
-function requestBack(url,data,type)
-{
-    $.ajax({
-        type:type,
-        url:url,
-        data:data,
-        success:function(data){
-            layer.msg(data.msg,{icon:1,time: 1000}, () => {
-                window.history.go(-1);
-        });
-
-        },
-        'error':function(data){
-            layer.msg(data.responseJSON.msg);
-        }
-    })
-}
-//后台用户状态更新
-function updateAdminStatus(value)
-{
-    url = SCOPE.status_url;
-    data = {'id':$(value).attr('x-id'),'status':$(value).attr('x-status')};
-    request(url,data,'get');
-}
-//后台用户状态更新
-function updateRoleStatus(value)
-{
-    url = SCOPE.status_url;
-    data = {'id':$(value).attr('x-id'),'status':$(value).attr('x-status')};
-    request(url,data,'get');
 }
 //公用修改状态
 function updateStatus(value)
@@ -102,26 +52,19 @@ function updateStatus(value)
     data = {'id':$(value).attr('x-id'),'status':$(value).attr('x-status')};
     request(url,data,'get');    
 }
-//添加后台用户
-function addAdmin()
-{
-    url = SCOPE.add_url;
-    data = {"username":$("#username").val(),"password":$("#password").val(),"repassword":$("#repassword").val(),"email":$("#email").val()};
-    request(url,data,'post');    
-}
 //公用修改
 function editData()
 {
     url = COMMON.edit_url;
     data = $("#x-form").serializeArray();
-    requestBack(url,data,'post');
+    request(url,data,'post','back');
 }
 //公用添加
 function addData()
 {
     url = COMMON.add_url;
     data = $("#x-form").serializeArray();
-    requestBack(url,data,'post');
+    request(url,data,'post','back');
 
 }
 //公共删除

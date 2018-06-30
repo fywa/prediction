@@ -144,4 +144,15 @@ class Base extends Controller
         }
         return success('操作成功');
     }
+    /**
+     * 审核申请
+     */
+    public function apply()
+    {
+        $list = model(request()->controller())->getAllList(['status' => 0]);
+        return $this->fetch('',[
+            'title' => '审核申请',
+            'list' => $list
+        ]);
+    }    
 }

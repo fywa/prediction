@@ -54,9 +54,11 @@ class BaseModel extends Model
     /**
      * 获取所有列表
     */
-    public function getAllList($where = [])
+    public function getAllList($where = [],$order = ['id' => 'asc'])
     {
-        return $this->where($where)->paginate(); 
+        return $this->where($where)
+                    ->order($order)
+                    ->paginate(); 
     }
     /**
      * 关联用户表数据
@@ -64,5 +66,12 @@ class BaseModel extends Model
     public function user()
     {
         return $this->belongsTo('User','user_id','id')->bind('username');
-    }    
+    }
+    /**
+     * 
+     */
+    public function getAllListRelateUser($where = [])
+    {
+        return $this->with('user')->where($where)->paginate();
+    }
 }

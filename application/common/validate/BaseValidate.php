@@ -69,15 +69,15 @@ class BaseValidate extends Validate
 	 */
 	protected function isExist($value , $rule = '', $data = '', $field = '')
 	{
-		if(model('Admin')->where('username',$value)->find())
-		{
-			return false;
-		}else
+		$res = model('Admin')->where('username',$value)->find();
+		if(empty($res))
 		{
 			return true;
+		}else
+		{
+			return false;
 		}
-
-	}
+	}	
 	public function getDataByRule($arrays)
 	{
 		if(array_key_exists('user_id',$arrays)||array_key_exists('uid',$arrays))

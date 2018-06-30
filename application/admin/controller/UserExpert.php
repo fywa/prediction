@@ -19,7 +19,7 @@ class UserExpert extends Base
     public function index()
     {
     	$keywords = input('get.keywords');
-    	$list = $this->obj->getAllList(['status' => 1]);
+    	$list = $this->obj->getAllListRelateUser(['status' => 1]);
    		return $this->fetch('',[
    			'title' => '标签列表',
    			'list' => $list,
