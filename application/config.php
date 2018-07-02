@@ -238,5 +238,5 @@ return [
         'list_rows' => 15,
     ],
     //接口调试混合模式
-    'api_debug'=>'true',
+    'api_debug'=> true,
 ];

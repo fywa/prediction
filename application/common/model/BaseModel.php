@@ -54,7 +54,7 @@ class BaseModel extends Model
     /**
      * 获取所有列表
     */
-    public function getAllList($where = [],$order = ['id' => 'asc'])
+    public function getAllList($where = ['status' => 1],$order = ['id' => 'asc'])
     {
         return $this->where($where)
                     ->order($order)

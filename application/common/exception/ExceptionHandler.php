@@ -17,7 +17,8 @@ class ExceptionHandler extends Handle{
 			$this->msg=$e->msg;
 			$this->errorCode=$e->errorCode;
 		}else{
-			if(config('api_debug')){
+			if(config('api_debug'))
+			{
 				return parent::render($e);
 
 			}

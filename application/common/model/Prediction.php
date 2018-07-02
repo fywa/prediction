@@ -8,4 +8,5 @@ namespace app\common\model;
 
 class Prediction extends BaseModel
 {
+	protected $hidden = ['create_time','update_time','status'];
 }
