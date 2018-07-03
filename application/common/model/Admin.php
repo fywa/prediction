@@ -59,7 +59,7 @@ class Admin extends BaseModel
     public function getListById($id = 0)
     {
         $where['status'] = 1;
-        $role = model('role')->getAllRole();
+        $role = model('role')->getAllList();
         $admin =  $this->where($where)->find($id);
         $admin['role'] = $role;
         return $admin;

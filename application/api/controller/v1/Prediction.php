@@ -6,7 +6,31 @@
 namespace app\api\controller\v1;
 
 
-class Prediction extends Controller
+class Prediction extends Base
 {
-    //
+	/**
+	 *获取固定条数的预测话题
+	 */
+	public function getSimplePrediction($num = 2)
+	{
+		$list = $this->obj->getSimpleList($num);
+		return success('',$list);
+	}
+	/**
+	 * 获取所有的预测话题
+	 */
+	public function getAllPrediction()
+	{
+		$list = $this->obj->getAllList();
+		return success('',$list);
+	}
+	/**
+	 * 获取所有的预测话题
+	 */
+	public function getPredictionById($id)
+	{
+		$list = $this->obj->getListById($id);
+		return success('',$list);
+	}
+
 }

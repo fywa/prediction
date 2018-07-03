@@ -9,16 +9,41 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 use think\Route;
-/**
- * token令牌	
- */
+// +-----------------------------------------------------------------------
+// Token 令牌
+// +-----------------------------------------------------------------------
 Route::post('api/:version/token/user','api/:version.Token/getToken');
 Route::post('api/:version/token/verify','api/:version.Token/verifyToken');
 
-/**
- * banner图获取
- */
+// +-----------------------------------------------------------------------
+// 轮播图
+// +-----------------------------------------------------------------------
 Route::get('api/:version/banner/all','api/:version.Featured/getAllBanner');
+
+// +-----------------------------------------------------------------------
+// 预测话题
+// +-----------------------------------------------------------------------
+//获取预测话题 简单模式
+Route::get('api/:version/prediction/simple/:num','api/:version.Prediction/getSimplePrediction');
+//用户提交预测话题答案
+Route::post('api/:version/user/prediction/answer','api/:version.UserPrediction/answerPrediction');
+//获取预测话题 所有
+Route::get('api/:version/prediction/all','api/:version.Prediction/getAllPrediction');
+//获取预测话题 通过id
+Route::get('api/:version/prediction/:id','api/:version.Prediction/getPredictionById');
+
+
+// +-----------------------------------------------------------------------
+// 分享经验
+// +-----------------------------------------------------------------------
+Route::get('api/:version/experience/simple/:num','api/:version.Experience/getSimpleExperience');
+
+// +-----------------------------------------------------------------------
+// 排行榜得分
+// +-----------------------------------------------------------------------
+Route::get('api/:version/Top/simple/:num','api/:version.Top/getSimpleTop');
+
+
 
 Route::get('api/:version/theme','api/:version.Theme/getSimpleList');
 Route::get('api/:version/theme/:id','api/:version.Theme/getComplexOne');

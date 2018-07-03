@@ -39,7 +39,8 @@ class Token{
 	}
 
 	public static function getCurrentUid(){
-		$uid=self::getCurrentTokenVar('uid');
+		// $uid=self::getCurrentTokenVar('uid');
+		$uid = 1;
 		return $uid;
 	}
 

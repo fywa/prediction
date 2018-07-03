@@ -14,4 +14,14 @@ class Base extends Controller
 	{
 	    $this->obj = model(explode('.',request()->controller())[1]);
 	}
+	/**
+	 * [checkPrimaryScope 检查权限]
+	 * @return [type] [api]
+	 */
+	protected function checkPrimaryScope(){
+		Token::needPrimaryScope();
+	}
+	protected function checkExclusiveScope(){
+		Token::needExclusiveScope();
+	}	
 }

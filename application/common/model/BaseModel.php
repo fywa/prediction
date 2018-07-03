@@ -8,6 +8,8 @@ use think\Model;
 
 class BaseModel extends Model
 {
+    public static $normal = ['status' => 1];
+    public static $pause = ['status' => 0];
     /**
      * 修改状态
      */
@@ -19,7 +21,7 @@ class BaseModel extends Model
     /**
      * 根据id查询
      */
-    public function getListById($id = 0)
+    public function getListById($id)
     {
         $where['status'] = 1;
         return $this->where($where)->find($id);
@@ -66,6 +68,20 @@ class BaseModel extends Model
     public function user()
     {
         return $this->belongsTo('User','user_id','id')->bind('username');
+    }
+    /**
+     * 关联用户预测表数据
+     */
+    public function userprediction()
+    {
+        return $this->hasMany('UserPrediction','prediction_id','id');
+    }    
+    /**
+     * 关联评论表数据
+     */
+    public function comment()
+    {
+        return $this->hasMany('Comment','foreign_id','id');
     }
     /**
      * 
