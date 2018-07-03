@@ -4,7 +4,7 @@
  * @date(2018.6.29 10:02)
  */
 namespace app\common\model;
-use app\lib\enum\ScopeEnum;
+use app\common\enum\ScopeEnum;
 /**
  * 预测话题
  */
@@ -21,11 +21,30 @@ class Prediction extends BaseModel
 		return $this->withCount('comment')
 					->where(self::$normal)->paginate();
 	}
-	public function getListById($id ,$usernum = 1)
+	/**
+	 * [预测话题详情页接口]
+	 * @param  [type]  $id         [预测话题id]
+	 * @param  integer $userNum    [用户预测显示条数]
+	 * @param  integer $historyNum [历史预测显示条数]
+	 * @return [type]              [array]
+	 */
+	public function getListById($id ,$userNum = 2 , $historyNum = 2 , $commentNum = 2)
 	{
-		return $this->with(['userprediction' => function($query)use ($usernum){
-					$query->limit($usernum);
-				}])
+		$res = parent::getListById($id);
+		$res['userprediction'] = model('UserPrediction')->getTopUserPredictionByPredictionId($id,[],$userNum);
+		$res['history'] = parent::getListByUserId($res['user_id'], [], $historyNum);
+		$res['comment'] = model('Comment')->getTopCommentByForeignId($id,[],ScopeEnum::PredictionComment , $commentNum);
+		return $res;
+	}
+	/**
+	 * 获取历史值
+	 */
+	public function getHistoryPredictionById($id , $where = [])
+	{
+		return $this->with(['historyprediction' => function($query){$query->where('status',1);}])
+					->where('status', 1)
+					->where($where)
 					->find($id);
+
 	}
 }

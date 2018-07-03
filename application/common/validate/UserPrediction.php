@@ -6,6 +6,7 @@ class UserPrediction extends BaseValidate
 	protected $rule=[
 		['id','require|isPositiveInteger','参数缺少id|id参数错误'],
 		['prediction_id','require|isPositiveInteger','参数缺少预测话题id|id参数类型错误'],
+		['user_id','require','缺少用户id'],
 		['key1','require','缺少答案1'],
 		['key2','require','缺少答案2'],
 		['key3','require','缺少答案3'],
@@ -17,7 +18,8 @@ class UserPrediction extends BaseValidate
 		'status' => ['id','status'],
         'edit' => ['id','name'],
         'del' => ['id'],
-        'answer' => ['prediction_id','key1','key2','key3'], 
+        'answer' => ['prediction_id','key1','key2','key3'],
+        'query' => ['prediction_id','user_id'] 
 	];
 	
 	/**

@@ -32,5 +32,12 @@ class Prediction extends Base
 		$list = $this->obj->getListById($id);
 		return success('',$list);
 	}
-
+	/**
+	 * 获取预测话题的历史值
+	 */
+	public function getHistoryPredictionById($id)
+	{
+		$list = $this->obj->getHistoryPredictionById($id);
+		return success('',$list);
+	}
 }

@@ -5,7 +5,7 @@
 namespace app\common\model;
 
 use think\Model;
-
+use app\api\service\Token;
 class BaseModel extends Model
 {
     public static $normal = ['status' => 1];
@@ -77,6 +77,14 @@ class BaseModel extends Model
         return $this->hasMany('UserPrediction','prediction_id','id');
     }    
     /**
+     * 关联预测表数据
+     * @return [type] [description]
+     */
+    public function prediction()
+    {
+        return $this->belongsTo('Prediction','prediction_id','id');
+    }
+    /**
      * 关联评论表数据
      */
     public function comment()
@@ -84,10 +92,30 @@ class BaseModel extends Model
         return $this->hasMany('Comment','foreign_id','id');
     }
     /**
-     * 
+     * 关联预测历史值表
+     */
+    public function historyprediction()
+    {
+        return $this->hasMany('HistoryPrediction','prediction_id','id');
+    }
+    /**
+     * 关联user表查询
      */
     public function getAllListRelateUser($where = [])
     {
-        return $this->with('user')->where($where)->paginate();
+        return $this->with('user',['status' =>1])
+                    ->where($where)
+                    ->paginate();
+    }
+    /**
+     *通过uid获取list 
+     */
+    public function getListByUserId($id ,$where = [] , $limit = 0)
+    {
+        return $this->where('status' , 1)
+                    ->where($where)
+                    ->where('user_id',$id)
+                    ->limit($limit)
+                    ->select();
     }
 }

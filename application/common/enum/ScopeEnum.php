@@ -1,5 +1,5 @@
 <?php
-namespace app\lib\enum;
+namespace app\common\enum;
 
 class ScopeEnum{
 	const User = 16;

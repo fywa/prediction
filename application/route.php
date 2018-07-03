@@ -27,10 +27,14 @@ Route::get('api/:version/banner/all','api/:version.Featured/getAllBanner');
 Route::get('api/:version/prediction/simple/:num','api/:version.Prediction/getSimplePrediction');
 //用户提交预测话题答案
 Route::post('api/:version/user/prediction/answer','api/:version.UserPrediction/answerPrediction');
+//查询用户提交的预测话题
+Route::post('api/:version/user/prediction','api/:version.UserPrediction/getPredictionByUserId');
 //获取预测话题 所有
 Route::get('api/:version/prediction/all','api/:version.Prediction/getAllPrediction');
 //获取预测话题 通过id
-Route::get('api/:version/prediction/:id','api/:version.Prediction/getPredictionById');
+Route::get('api/:version/prediction/:id','api/:version.Prediction/getPredictionById',[],['id'=>'\d+']);
+//获取预测话题历史值
+Route::get('api/:version/prediction/history/:id','api/:version.Prediction/getHistoryPredictionById');
 
 
 // +-----------------------------------------------------------------------
