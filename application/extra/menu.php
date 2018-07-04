@@ -160,5 +160,37 @@ return
 				]
 			]
 		],
+		[
+			'title' => '问题管理',
+			'list' =>
+			[
+				[
+					'controller' => 'Question',
+					'icon' => 'glyphicon glyphicon-question-sign',
+					'title' => '常见问题',
+					'href' => '#',
+					'list' => 
+					[
+						[
+							'action' => 'index',
+							'name' => '问题列表',
+							'href' => 'Question/index',
+						],
+						[
+							'action' => 'add',
+							'name' => '添加问题',
+							'href' => 'Question/add'
+						]
+					]			
+				],
+				[
+					'controller' => 'Suggestion',
+					'icon' => 'glyphicon glyphicon-earphone',
+					'title' => '意见反馈',
+					'href' => 'Suggestion/index',
+					'list' => [],
+				]
+			]
+		]
 	]
 ];
