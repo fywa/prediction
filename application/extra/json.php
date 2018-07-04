@@ -2,5 +2,7 @@
 return [
 	'commonError' => 404,
 	'sucess' => 202,
-	'serverError' => 500
+	'serverError' => 500,
+	'successEditMsg' => '修改成功',
+	'errorEditMsg' => '修改失败',
 ];

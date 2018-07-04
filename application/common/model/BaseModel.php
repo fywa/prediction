@@ -63,12 +63,26 @@ class BaseModel extends Model
                     ->paginate(); 
     }
     /**
-     * 关联用户表数据
+     * 关联用户表姓名
      */
     public function user()
     {
         return $this->belongsTo('User','user_id','id')->bind('username');
     }
+    /**
+     * 关联用户标签
+     */
+    public function userexpert()
+    {
+        return $this->hasMany('UserExpert','user_id','id');
+    }    
+     /**
+     * 关联用户表关注人数
+     */
+    public function userlove()
+    {
+        return $this->belongsTo('User','user_id','id')->bind('love');
+    }  
     /**
      * 关联用户预测表数据
      */
@@ -83,6 +97,20 @@ class BaseModel extends Model
     public function prediction()
     {
         return $this->belongsTo('Prediction','prediction_id','id');
+    }
+    /**
+     * 关联排行榜
+     */
+    public function top()
+    {
+        return $this->belongsTo('Top','id','user_id');
+    }
+    /**
+     * 关联经验分享
+     */
+    public function experience()
+    {
+        return $this->belongsTo('Experience','id','user_id');
     }
     /**
      * 关联评论表数据

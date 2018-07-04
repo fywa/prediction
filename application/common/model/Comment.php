@@ -2,8 +2,7 @@
 
 namespace app\common\model;
 
-use think\Model;
-
+use app\api\service\Token;
 class Comment extends BaseModel
 {
     /**
@@ -18,5 +17,16 @@ class Comment extends BaseModel
                     ->order('love','desc')
                     ->where('foreign_id' , $id)
                     ->select();
+    }
+    /**
+     * 添加评论
+     */
+    public  function add($type = 0)
+    {
+        $data['foreign_id'] = input('post.id');
+        $data['content'] = input('post.content');
+        $data['user_id'] = Token::getCurrentUid();
+        $data['type'] = $type;
+        return $this->save($data);
     }
 }

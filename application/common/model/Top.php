@@ -14,10 +14,11 @@ class Top extends BaseModel
 	public function getSimpleList($num = 2)
 	{
 		return $this->withCount('userprediction', self::$normal)
-					->with('user',self::$normal)
+					->with('userlove',self::$normal)
 					->where(self::$normal)
 					->order('avg_score','asc')
 					->limit($num)
 					->select();
 	}
+
 }

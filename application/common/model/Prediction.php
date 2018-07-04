@@ -5,6 +5,7 @@
  */
 namespace app\common\model;
 use app\common\enum\ScopeEnum;
+use app\api\service\Token;
 /**
  * 预测话题
  */
@@ -19,7 +20,8 @@ class Prediction extends BaseModel
 	public function getAllList($where = ['status' => 1],$order = ['id' => 'asc'])
 	{
 		return $this->withCount('comment')
-					->where(self::$normal)->paginate();
+					->where($where)
+					->paginate();
 	}
 	/**
 	 * [预测话题详情页接口]
@@ -46,5 +48,14 @@ class Prediction extends BaseModel
 					->where($where)
 					->find($id);
 
+	}
+	/**
+	 * 添加预测话题
+	 */
+	public function add()
+	{
+        $data = input('post.');
+        $data['user_id'] = Token::getCurrentUid();
+        return $this->allowField(true)->save($data);		
 	}
 }

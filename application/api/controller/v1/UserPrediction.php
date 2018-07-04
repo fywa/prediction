@@ -42,4 +42,17 @@ class UserPrediction extends Base
 		return success('',$res);
 
 	}
+	/**
+	 * 获取个人所参与的预测话题 通过token uid
+	 */
+	public function getPersonalPrediction()
+	{
+		$list = $this->obj->getListByUserId(Token::getCurrentUid());	
+		return success('',$list);
+	}
+	public function getOnePrediction($predictionid)
+	{
+		$list = $this->obj->getOnePrediction($predictionid);
+		return success('',$list);
+	}			
 }

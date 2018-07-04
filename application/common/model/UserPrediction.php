@@ -49,4 +49,11 @@ class UserPrediction extends BaseModel
                     ->count();
 
     }
+    public function getOnePrediction($predictionId)
+    {
+        return $this->with('prediction')
+                    ->where('prediction_id',$predictionId)
+                    ->where('user_id',Token::getCurrentUid())
+                    ->find();
+    }    
 }
