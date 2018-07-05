@@ -6,6 +6,7 @@ class Suggestion extends BaseValidate
 	protected $rule=[
 		['id','require|isPositiveInteger','参数缺少id|id参数错误'],
 		['status','require|checkStatus','参数缺少status|状态非法'],
+		['content','require','缺少意见内容'],
         ['name','require','缺少角色名称'],
         ['rules','require','缺少规则'],
 	];
@@ -14,7 +15,8 @@ class Suggestion extends BaseValidate
 		'status' => ['id','status'],
 		'add' => ['name','rules'],
         'edit' => ['name','rules','id'],
-        'del' => ['id']
+        'del' => ['id'],
+        'doadd' => ['content'],
 	];
 	
 	/**

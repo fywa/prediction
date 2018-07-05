@@ -12,4 +12,11 @@ class Question extends BaseModel
     {
     	return config('status.type');
     }
+    /**
+     * 获取指定条数的列表
+     */
+    public function getSimpleList($num)
+	{
+		return $this->where(self::$normal)->limit($num)->select();
+	}
 }

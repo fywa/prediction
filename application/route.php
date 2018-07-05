@@ -84,33 +84,18 @@ Route::get('api/:version/user/experience/detail/:id','api/:version.Experience/ge
 
 
 
-
-
-Route::get('api/:version/theme','api/:version.Theme/getSimpleList');
-Route::get('api/:version/theme/:id','api/:version.Theme/getComplexOne');
-//product商品
-
-// Route::get('api/:version/product/bycategory','api/:version.Product/getAllInCategory');
-// Route::get('api/:version/product/:id','api/:version.Product/getOne',[],['id'=>'\d+']);
-// Route::get('api/:version/product/recent','api/:version.Product/getRecent');
-Route::group('api/:version/product',function(){
-					Route::get('/by_category','api/:version.Product/getAllInCategory');
-					Route::get('/:id','api/:version.Product/getOne',[],['id'=>'\d+']);
-					Route::get('/recent','api/:version.Product/getRecent');
-});
-
-Route::get('api/:version/category/all','api/:version.Category/getAllCategories');
+// +-----------------------------------------------------------------------
+// 常见问题
+// +-----------------------------------------------------------------------
+//获取所有的常见问题
+Route::get('api/:version/question/simple/:num','api/:version.Question/getSimpleQuestion');
+// 通过id获取问题
+Route::get('api/:version/question/:id','api/:version.Question/getQuestionById',[],['id' => '\d+']);
 
 
 
-//地址
-Route::post('api/:version/address','api/:version.Address/createOrUpdateAddress');
-//订单
-Route::post('api/:version/order','api/:version.Order/placeOrder');
-//支付
-Route::post('api/:version/pay/preorder','api/:version.Pay/getPreOrder');
-//微信的回调机制
-Route::post('api/:version/pay/notify','api/:version.Pay/receiveNotify');
-//订单分页
-Route::get('api/:version/order/byuser','api/:version.Order/getSummaryByUser');
-Route::get('api/:version/order/:id','api/:version.Order/getDetail',[],['id'=>'\d+']);
+// +-----------------------------------------------------------------------
+// 意见反馈
+// +-----------------------------------------------------------------------
+//获取所有的常见问题
+Route::post('api/:version/suggestion','api/:version.Suggestion/addSuggestion');
