@@ -39,5 +39,31 @@ class MathLib
 		}
 		return 0;
 	}
+	public static function getBlair($key,$data)
+    {
+        $res = 0 ;
+        try{
+            switch($key)
+            {
+                case 'key1':
+                    $res = pow(1-$data['key1']/100,2) + pow(0-$data['key2']/100,2)+pow(0-$data['key3']/100,2);
+                    break;
+                case 'key2':
+                    $res = pow(0-$data['key1']/100,2) + pow(1-$data['key2']/100,2)+pow(0-$data['key3']/100,2);
+                    break;
+                case 'key3':
+                    $res = pow(0-$data['key1']/100,2) + pow(0-$data['key2']/100,2)+pow(1-$data['key3']/100,2);
+                    break;
+                default:
+                    $res = pow(0-$data['key1']/100,2) + pow(0-$data['key2']/100,2)+pow(0-$data['key3']/100,2);
+                    break;
+            }
+        }catch (\Exception $e)
+        {
+           $res = -1;
+        }
+
+        return $res;
+    }
 
 }

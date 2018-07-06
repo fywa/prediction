@@ -58,4 +58,30 @@ class Prediction extends BaseModel
         $data['user_id'] = Token::getCurrentUid();
         return $this->allowField(true)->save($data);		
 	}
+	/**
+	 * 查询布莱尔得分的相关数据
+	 */
+	public function getBlair()
+	{
+		return $this->with(['userprediction' => function($query)
+						{
+							$query->where('score',-1);
+						}])
+					->where(['main_key' => ['neq','']])
+					->select();
+
+	}
+    /**
+     * 统计综合得分
+     */
+    public function getTotal()
+    {
+        return $this->with(['userprediction' => function($query)
+        {
+            $query->where(['score' => ['neq',-1]]);
+        }])
+            ->where(['main_key' => ['neq',''],'main_score' => -1])
+            ->select();
+
+    }
 }

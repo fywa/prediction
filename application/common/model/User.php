@@ -93,4 +93,5 @@ class User extends BaseModel
         $data = input('post.');
         return $this->allowField(true)->save($data,['id' => Token::getCurrentUid()]); 
     }
+
 }

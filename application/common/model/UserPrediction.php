@@ -55,5 +55,5 @@ class UserPrediction extends BaseModel
                     ->where('prediction_id',$predictionId)
                     ->where('user_id',Token::getCurrentUid())
                     ->find();
-    }    
+    }
 }
