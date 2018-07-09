@@ -12,4 +12,4 @@
 
 2.架构图
 --------------
-![](https://raw.githubusercontent.com/Lxido/prediction/20180709140801.png)
+![](https://github.com/Lxido/prediction/blob/master/20180709140801.png?raw=true)
