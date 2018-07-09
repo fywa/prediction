@@ -69,4 +69,17 @@ class Prediction extends Base
 		}
 		return success('预测成功');
 	}
+	/**
+     * 结束预测话题
+     */
+	public function endPersonalPrediction()
+    {
+        (validate('Prediction')->doCheck('end'));
+        $res = $this->obj->end();
+        if(!$res)
+        {
+            return error('结束失败',confif('json.commonError'),10302);
+        }
+        return success('结束成功');
+    }
 }

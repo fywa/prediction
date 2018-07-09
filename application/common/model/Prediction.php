@@ -84,4 +84,15 @@ class Prediction extends BaseModel
             ->select();
 
     }
+    /**
+     * 结束话题
+     */
+    public function end()
+    {
+        $data = input('post.');
+        $data['user_id'] = Token::getCurrentUid();
+        $id = $data['id'];
+        unset($data['id']);
+        return $this->allowField(true)->save($data,['id' => $id]);
+    }
 }

@@ -41,6 +41,8 @@ Route::get('api/:version/prediction/history/:id','api/:version.Prediction/getHis
 Route::get('api/:version/prediction/search/:title','api/:version.Prediction/searchPrediction');
 //查看个人发布的预测话题
 Route::get('api/:version/prediction/personal', 'api/:version.Prediction/getAllPersonalPrediction');
+//结束预测
+Route::post('api/:version/prediction/end','api/:version.Prediction/endPersonalPrediction');
 
 
 
