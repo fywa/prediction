@@ -12,9 +12,9 @@ class Token
 {
 	public function getToken($code=''){
 		validate('TokenGet')->docheck();
-		$tk=new UserToken($code);
-		$token=$tk->get();
-		return ['token'=>$token];
+		$tk = new UserToken($code);
+		$token = $tk->get();
+		return success('',$token);
 
 	}
 	public function verifyToken($token=''){

@@ -7,6 +7,8 @@
  */
 namespace app\admin\controller;
 
+use app\common\enum\ScopeEnum;
+
 class User extends Base
 {
     public $obj;

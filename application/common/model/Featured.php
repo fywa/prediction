@@ -6,6 +6,11 @@ namespace app\common\model;
 class Featured extends BaseModel
 {
     protected $hidden = ['create_time','update_time','delete_time','type','status'];    
+    public function getImgAttr($value)
+    {
+        return str_replace('\\','/',$value);
+
+    }
     /**
      * 获取添加规则
      */

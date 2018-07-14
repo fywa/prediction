@@ -6,7 +6,7 @@
 namespace app\api\controller\v1;
 
 use think\Controller;
-
+use app\api\service\Token;
 class Base extends Controller
 {
 	public $obj = null;

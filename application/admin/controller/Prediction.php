@@ -18,12 +18,15 @@ class Prediction extends Base
 	 */
     public function index()
     {
+        $co = input('get.status',1);
     	$keywords = input('get.keywords');
-    	$list = $this->obj->getAllListRelateUser(['status' => 1]);
+    	$list = $this->obj->getAllListRelateUser(['status' => 1,'main_key' => $co?'':['neq','']]);
    		return $this->fetch('',[
    			'title' => '预测列表',
    			'list' => $list,
    			'key' => $keywords == '' ?'请输入关键词':$keywords,
+            'status' => config('status.answer'),
+            'co' => $co
    		]);
     } 
     /**
@@ -37,4 +40,32 @@ class Prediction extends Base
 			'list' => $list
 		]);
 	}
+    /**
+     * 结束预测
+     */
+    public function end()
+    {
+        //post 逻辑
+        if(request()->isPost())
+        {
+            validate(request()->controller())->doCheck('end');
+            $res = model(request()->controller())->doEdit();
+            if($res)
+            {
+                return success('更新成功');
+            }
+            return error('更新失败',config('json.commonError'),10021);
+        }
+        $id = input('get.id');
+        if(empty($id))
+        {
+            $this->error('缺少id');
+        }
+        $list = model(request()->controller())->getListByIdFromAdmin($id);
+
+        return $this->fetch('',[
+            'title' => '结束话题',
+            'list' => $list
+        ]);
+    }
 }

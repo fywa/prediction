@@ -11,12 +11,16 @@ class Experience extends BaseValidate
 		['key1','require','缺少答案1'],
 		['key2','require','缺少答案2'],
 		['key3','require','缺少答案3'],
+        ['user_id','require','缺少用户id']
 	];
 
 	protected $scene = [
 		'status' => ['id','status'],
         'edit' => ['id','title','content','watch'],
-        'del' => ['id']
+        'del' => ['id'],
+        'doadd' => ['title','content'],
+        'love' => ['id'],
+        'get' => ['user_id']
 	];
 	
 	/**

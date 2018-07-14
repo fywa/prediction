@@ -103,7 +103,7 @@ class Base extends Controller
         {
             $this->error('缺少id');
         }
-        $list = model(request()->controller())->getListById($id);
+        $list = model(request()->controller())->getListByIdFromAdmin($id);
         return $this->fetch('',[
             'title' => '编辑',
             'list' => $list

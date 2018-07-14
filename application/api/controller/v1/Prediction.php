@@ -5,9 +5,15 @@
  */
 namespace app\api\controller\v1;
 use app\api\service\Token;
+use app\common\enum\ScopeEnum;
 
 class Prediction extends Base
 {
+    protected $beforeActionList=[
+        'checkPrimaryScope' => [
+            'only'=>'getsimpleprediction,getallprediction,getpredictionbyid,gethistorypredictionbyid,searchprediction,getallpersonalprediction,addprediction,endpersonalprediction'
+        ],
+    ];
 	/**
 	 *获取固定条数的预测话题
 	 */
@@ -21,9 +27,18 @@ class Prediction extends Base
 	 */
 	public function getAllPrediction()
 	{
-		$list = $this->obj->getAllList();
+    	$list = $this->obj->getAllList();
 		return success('',$list);
 	}
+    /**
+     * 获取个人所有预测的话题
+     */
+    public function getAllPersonalPrediction()
+    {
+        validate('Prediction')->doCheck('get');
+        $list = $this->obj->getListByUserId(input('get.user_id'));
+        return success('',$list);
+    }
 	/**
 	 * 获取所有的预测话题
 	 */
@@ -48,14 +63,7 @@ class Prediction extends Base
 		$list = $this->obj->getAllList(['status' => 1 ,'title' => ['like',"%".$title."%"]]);
 		return success('',$list);
 	}	
-	/**
-	 * 获取个人所有预测的话题
-	 */
-	public function getAllPersonalPrediction()
-	{
-		$list = $this->obj->getListByUserId(Token::getCurrentUid());
-		return success('',$list);
-	}
+
 	/**
 	 * 发布预测
 	 */
@@ -75,11 +83,17 @@ class Prediction extends Base
 	public function endPersonalPrediction()
     {
         (validate('Prediction')->doCheck('end'));
-        $res = $this->obj->end();
-        if(!$res)
+        $list = $this->obj->where(['id' => input('post.id'),'choose_key' => ['eq',''],'status' => 1])->find();
+        if(!empty($list))
         {
-            return error('结束失败',confif('json.commonError'),10302);
+            $res = $this->obj->end();
+            if(!$res)
+            {
+                return error('结束失败',config('json.commonError'),10302);
+            }
+            return success('结束成功');
         }
-        return success('结束成功');
+        return error('话题已经结束过了',config('json.commonError',10302));
+
     }
 }

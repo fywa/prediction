@@ -10,7 +10,7 @@ use app\common\enum\ScopeEnum;
 class Token{
 	public static function generateToken(){
 		//32字符组成一组随机字符串
-		$randChars=getRandChars(32);
+		$randChars = getRandChars(32);
 		$timestamp=$_SERVER['REQUEST_TIME_FLOAT'];
 		//salt
 		$salt=config('secure.token_salt');
@@ -39,8 +39,7 @@ class Token{
 	}
 
 	public static function getCurrentUid(){
-		// $uid=self::getCurrentTokenVar('uid');
-		$uid = 1;
+	    $uid=self::getCurrentTokenVar('uid');
 		return $uid;
 	}
 

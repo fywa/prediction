@@ -8,6 +8,11 @@ use app\api\service\Token;
 
 class Experience extends Base
 {
+    protected $beforeActionList=[
+        'checkPrimaryScope' => [
+            'only'=>'getsimpleexperience,getpersonalexperience,getpersonalexperiencebyid,addexperience'
+        ],
+    ];
 	public function getSimpleExperience($num = 2)
 	{
 		$list = $this->obj->getSimpleList($num);
@@ -18,7 +23,8 @@ class Experience extends Base
 	 */
 	public function getPersonalExperience()
 	{
-		$list = $this->obj->getAllList(['status' => 1 ,'user_id' => Token::getCurrentUid()]);
+        (validate('Experience')->doCheck('get'));
+		$list = $this->obj->getAllList(['status' => 1 ,'user_id' => input('get.user_id')]);
 		return success('',$list);
 	}
 	/**
@@ -29,4 +35,17 @@ class Experience extends Base
 		$list = $this->obj->getListById($id);
 		return success('',$list);
 	}
+    /**
+     * 发布经验分享
+     */
+    public function addExperience()
+    {
+        (validate('Experience')->doCheck('doadd'));
+        $res = $this->obj->add();
+        if(!$res)
+        {
+            return error('发布经验失败',config('json.commonError'),10302);
+        }
+        return success('发布经验成功');
+    }
 }

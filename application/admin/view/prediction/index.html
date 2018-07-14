@@ -36,6 +36,13 @@
                                             <input id="option3" name="options" type="radio">月</label>
                                     </di -->
                                 </div>
+                                <div class="col-sm-5 m-b-xs">
+                                    <select class="input-sm form-control input-s-sm inline" name="status">
+                                        {volist name="status" id="vo"}
+                                        <option value="{$key}" {if condition="$key == $co"} selected="selected"{/if}>{$vo}</option>
+                                        {/volist}
+                                    </select>
+                                </div>
                                 <div class="col-sm-3">
                                     <div class="input-group">
                                         <input name="keywords" placeholder="{$key}" class="input-sm form-control" type="text"> <span class="input-group-btn">
@@ -59,7 +66,7 @@
                                     <th>最终答案</th>
                                     <th>最终概率值</th>
                                     <th>状态</th>
-                                    <th>更新时间</th>
+                                    <th>结束时间</th>
                                     <th>操作</th>
                                 </thead>
                                 <tbody>
@@ -83,9 +90,13 @@
                                         <td class="project-status">
                                             <span class="label label-primary" x-id="{$vo.id}" x-status="0" onclick="updateStatus(this);" style="cursor: pointer">正常</span>
                                         </td>
-                                        <td>{$vo.create_time}</td>
+
+                                        <td>{$vo.end_time|date="Y-m-d H:i:s",###}</td>
                                         <td>
                                             <a href="{:url('edit',['id' => $vo.id])}" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> 编辑 </a>
+                                        {empty name="$vo.main_key"}
+                                            <a href="{:url('end',['id' => $vo.id])}" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> 结束 </a>
+                                        {/empty}
                                             <button class="btn btn-primary " x-id="{$vo.id}" onclick="delData(this);"  type="button"><i class="fa fa-close"></i>&nbsp;删除
                                             </button>
                                         </td>

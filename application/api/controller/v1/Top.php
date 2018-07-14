@@ -12,6 +12,11 @@ use app\api\service\Token;
  */
 class Top extends Base
 {
+    protected $beforeActionList=[
+        'checkPrimaryScope' => [
+            'only'=>'getsimpletop'
+        ],
+    ];
 	/**
 	 * 查看限值条数的排行榜
 	 * @num 显示条数
@@ -20,9 +25,18 @@ class Top extends Base
 	{
 		$list = $this->obj->getSimpleList($num)->toArray();
 		$all = $this->obj->getSimpleList(0)->toArray();
+		$res['top'] = $list;
 		//统计中位数
-		$list['median'] = MathLib::getInstance()->getMedian($all,'avg_score');
-		$list['user'] = $this->obj->getListByUserId(Token::getCurrentUid());
-		return success('',$list);
+		$res['median'] = MathLib::getInstance()->getMedian($all,'avg_score');
+		$res['user'] = $this->obj->getListByUserId(Token::getCurrentUid())->toArray();
+//		return json($user);exit;
+//		if(empty($user))
+//        {
+//            $res['user'] = 0;
+//        }else
+//        {
+//            $res['user'] = $user[0]['id'];
+//        }
+		return success('',$res);
 	}
 }

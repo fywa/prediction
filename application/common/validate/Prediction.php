@@ -13,6 +13,7 @@ class Prediction extends BaseValidate
 		['key3','require','缺少答案3'],
 		['end_time','require','缺少截止时间'],
         ['choose_key','require','缺少预测结果'],
+        ['user_id','require','缺少用户id']
 	];
 
 	protected $scene = [
@@ -21,6 +22,9 @@ class Prediction extends BaseValidate
         'del' => ['id'],
         'doadd' => ['title','content','key1','key2','key3','end_time'],
         'end' => ['id','choose_key'],
+        'love' => ['id'],
+        'end' => ['id','choose_key','main_key'],
+        'get' => ['user_id']
 	];
 	
 	/**

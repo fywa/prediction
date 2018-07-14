@@ -59,6 +59,13 @@ function editData()
     data = $("#x-form").serializeArray();
     request(url,data,'post','back');
 }
+//公用修改
+function endData()
+{
+    url = SCOPE.end_url;
+    data = $("#x-form").serializeArray();
+    request(url,data,'post','back');
+}
 //公用添加
 function addData()
 {

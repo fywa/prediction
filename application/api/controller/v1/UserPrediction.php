@@ -8,6 +8,11 @@ use app\api\service\Token;
 
 class UserPrediction extends Base
 {
+    protected $beforeActionList=[
+        'checkPrimaryScope' => [
+            'only'=>'answerprediction,getpredictionbyuserid,getpersonalprediction,getoneprediction'
+        ],
+    ];
 	/**
 	 *提交预测
 	 */
@@ -17,16 +22,24 @@ class UserPrediction extends Base
 		//判断是否已经预测过
 		$userId = Token::getCurrentUid();
 		$userPrediction = $this->obj->getPredictionByUserId($userId,input('post.prediction_id'));
+//		判断是否为本人回答
+		$current = model('Prediction')->get(input('post.prediction_id'));
+		if($current['user_id'] == $userId)
+        {
+            model('HistoryPrediction')->add();
+        }
 		if(!empty($userPrediction))
 		{
-			return error('提交失败，已经预测过了',config('json.commonError'),10301);
+		    $this->obj->doUpdate($userPrediction['id']);
+            return success('提交成功');
+//			return error('提交失败，已经预测过了',config('json.commonError'),10301);
 		}
 		$res = $this->obj->add();
 		if(!$res)
 		{
 			return error('提交失败',config('json.serverError'),10300);
 		}
-		return success('提交 成功');
+		return success('提交成功');
 	}
 	/**
 	 *查询用户的预测话题 
@@ -47,7 +60,8 @@ class UserPrediction extends Base
 	 */
 	public function getPersonalPrediction()
 	{
-		$list = $this->obj->getListByUserId(Token::getCurrentUid());	
+        (validate('UserPrediction')->doCheck('get'));
+		$list = $this->obj->getListByUserId(input('get.user_id'));
 		return success('',$list);
 	}
 	public function getOnePrediction($predictionid)

@@ -6,6 +6,11 @@
 namespace app\api\controller\v1;
 class Featured extends Base
 {
+    protected $beforeActionList=[
+        'checkPrimaryScope' => [
+            'only'=>'getallbanner'
+        ],
+    ];
 	/**
 	 * 获取所有的banner图
 	 */

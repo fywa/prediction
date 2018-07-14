@@ -27,6 +27,7 @@ class User extends BaseValidate
 		'edit' => ['id'],
 		'doedit' => ['username','nickname','sex','birthday','education','job','signature','user_expert'],
 		//小程序端修改个人信息
+        'love' => ['id'],
 	];
 	
 	/**

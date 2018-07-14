@@ -1,23 +1,21 @@
 <?php
 namespace app\common\validate;
 
-class Comment extends BaseValidate
+class Course extends BaseValidate
 {
 	protected $rule=[
 		['id','require|isPositiveInteger','参数缺少id|id参数错误'],
-		['content','require','缺少评论内容'],
+        ['title','require','缺少标题名称'],
+        ['content','require','缺少内容'],
 		['status','require|checkStatus','参数缺少status|状态非法'],
         ['name','require','缺少角色名称'],
-        ['rules','require','缺少规则'],
 	];
 
 	protected $scene = [
 		'status' => ['id','status'],
-		'add' => ['name','rules'],
-		'doadd' => ['id','content'],
-        'edit' => ['name','rules','id'],
-        'del' => ['id'],
-        'love' => ['id']
+		'add' => ['title','content'],
+        'edit' => ['title','content','id'],
+        'del' => ['id']
 	];
 	
 	/**

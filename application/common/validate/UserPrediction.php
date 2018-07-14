@@ -19,7 +19,8 @@ class UserPrediction extends BaseValidate
         'edit' => ['id','name'],
         'del' => ['id'],
         'answer' => ['prediction_id','key1','key2','key3'],
-        'query' => ['prediction_id','user_id'] 
+        'query' => ['prediction_id','user_id'],
+        'get' => ['user_id']
 	];
 	
 	/**

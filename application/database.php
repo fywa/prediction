@@ -19,7 +19,7 @@ return [
     // 用户名
     'username'        => 'root',
     // 密码
-    'password'        => 'Qianwen1000',
+    'password'        => 'roadforhacker',
     // 端口
     'hostport'        => '3306',
     // 连接dsn
@@ -47,7 +47,7 @@ return [
     // 自动写入时间戳字段
     'auto_timestamp'  => true,
     // 时间字段取出后的默认时间格式
-    'datetime_format' => 'Y-m-d H:i:s',
+    'datetime_format' => false,
     // 是否需要进行SQL性能分析
     'sql_explain'     => false,
 ];

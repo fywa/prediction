@@ -27,6 +27,14 @@ class BaseModel extends Model
         return $this->where($where)->find($id);
     }
     /**
+     * 根据id查询
+     */
+    public function getListByIdFromAdmin($id)
+    {
+        $where['status'] = 1;
+        return $this->where($where)->find($id);
+    }
+    /**
      * 更新
      */
     public function doEdit()
@@ -60,7 +68,7 @@ class BaseModel extends Model
     {
         return $this->where($where)
                     ->order($order)
-                    ->paginate(); 
+                    ->select();
     }
     /**
      * 关联用户表姓名
@@ -68,6 +76,13 @@ class BaseModel extends Model
     public function user()
     {
         return $this->belongsTo('User','user_id','id')->bind('username');
+    }
+    /**
+     * 关联用户表
+     */
+    public function users()
+    {
+        return $this->belongsTo('User','user_id','id');
     }
     /**
      * 关联用户标签
@@ -146,4 +161,27 @@ class BaseModel extends Model
                     ->limit($limit)
                     ->select();
     }
+
+    /**
+     * 点赞
+     */
+    public function love()
+    {
+        $this->where('id',input('get.id'))->setInc('love');
+    }
+    /**
+     * 观看人数
+     */
+    public function watch()
+    {
+        $this->where('id',input('get.id'))->setInc('watch');
+    }
+    /**
+     * 观看所有人数
+     */
+    public function watchs($id)
+    {
+        $this->where('id',$id)->setInc('watch');
+    }
+
 }

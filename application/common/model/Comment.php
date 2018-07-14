@@ -10,7 +10,8 @@ class Comment extends BaseModel
      */
     public function getTopCommentByForeignId($id , $where = [] , $type = 0 ,$limit = 0)
     {
-        return $this->where('status' ,1)
+        return $this->with("users")
+                    ->where('status' ,1)
                     ->where('type',$type)
                     ->where($where)
                     ->limit($limit)

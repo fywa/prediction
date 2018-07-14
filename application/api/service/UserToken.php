@@ -46,22 +46,23 @@ class UserToken extends Token
 
 	}
 
-	private function grantToken($wxResult){
+	private function grantToken($wxResult)
+    {
 		//拿到oppenid
-		$openid=$wxResult['openid' ];
+		$openid = $wxResult['openid' ];
 		//数据库里对比一下是否存在openid
-		$user=model('User')->getByOpenID($openid);
+		$user = model('User')->getByOpenID($openid);
 		if($user){
-			$uid=$user->id;
+			$uid = $user->id;
 		}else{
-			$uid=$this->newUser($openid);
+			$uid = $this->newUser($openid);
 
 		}
 		//如果存在，不处理，不存在，就插入记录
 		//生成令牌，存入缓存数据，吸入缓存
 		$cachedValue=$this->prepareCachedValue($wxResult,$uid);
 		$token=$this->saveToCache($cachedValue);
-		return $token;
+		return ['token' => $token,'user_id' => $uid];
 
 		//吧令牌返回客户端
 	}
@@ -79,23 +80,24 @@ class UserToken extends Token
 		return $key;
 	}
 	private function prepareCachedValue($wxResult,$uid){
-		$cachedValue=$wxResult;
-		$cachedValue['uid']=$uid;
+		$cachedValue = $wxResult;
+		$cachedValue['uid'] = $uid;
 		//scope 表示app用户权限 32为cms用户权限
-		$cachedValue['scope']=ScopeEnum::User;
+		$cachedValue['scope'] = ScopeEnum::User;
 		return $cachedValue;
 	}
 
 	private function newUser($openid){
-		$user=model('User')->create(
-			['openid'=>$openid]
+		$user = model('User')->create(
+			['openid' => $openid]
 		);
 		return $user->id;
 	}
-	private function processLoginError($wxResult){
+	private function processLoginError($wxResult)
+    {
 		throw new WeChatException([
-			'msg'=>$wxResult['errmsg'],
-			'errorCode'=>$wxResult['errcode']
+			'msg' => $wxResult['errmsg'],
+			'errorCode' => $wxResult['errcode']
 	]);
 
 	}

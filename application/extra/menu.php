@@ -151,13 +151,13 @@ return
 					'href' => 'User/index',
 					'list' => []
 				],
-				[
-					'controller' => 'UserExpert',
-					'icon' => 'glyphicon glyphicon-tag',
-					'title' => '标签列表',
-					'href' => 'UserExpert/index',
-					'list' => []
-				]
+//				[
+//					'controller' => 'UserExpert',
+//					'icon' => 'glyphicon glyphicon-tag',
+//					'title' => '标签列表',
+//					'href' => 'UserExpert/index',
+//					'list' => []
+//				]
 			]
 		],
 		[
@@ -189,7 +189,26 @@ return
 					'title' => '意见反馈',
 					'href' => 'Suggestion/index',
 					'list' => [],
-				]
+				],
+                [
+                    'controller' => 'Course',
+                    'icon' => 'glyphicon glyphicon-grain',
+                    'title' => '预言家课堂',
+                    'href' => '#',
+                    'list' =>
+                        [
+                            [
+                                'action' => 'index',
+                                'name' => '话题列表',
+                                'href' => 'Course/index',
+                            ],
+                            [
+                                'action' => 'add',
+                                'name' => '添加话题',
+                                'href' => 'Course/add'
+                            ]
+                        ]
+                ],
 			]
 		]
 	]

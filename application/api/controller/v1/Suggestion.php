@@ -8,6 +8,11 @@ use app\api\service\Token;
 
 class Suggestion extends Base
 {
+    protected $beforeActionList=[
+        'checkPrimaryScope' => [
+            'only'=>'addsuggestion'
+        ],
+    ];
 	/**
 	 * 反馈意见
 	 */

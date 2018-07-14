@@ -19,6 +19,7 @@ class Total extends Base
     {
         file_put_contents('/tmp/2.txt',"total",FILE_APPEND);
         $list = model('Prediction')->getTotal()->toArray();
+        var_dump($list);
         $data = [];
         $avgWeigth = 0;
         $weigth = 0;

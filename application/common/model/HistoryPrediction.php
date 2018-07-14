@@ -11,4 +11,14 @@ use app\common\enum\ScopeEnum;
 class HistoryPrediction extends BaseModel
 {
 	protected $hidden = ['create_time','update_time','status'];
+    /**
+     * 回答预测话题
+     */
+    public function add()
+    {
+        $data = input('post.');
+        $data['user_id'] = Token::getCurrentUid();
+        $data['status'] = 1;
+        return $this->allowField(true)->save($data);
+    }
 }

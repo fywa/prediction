@@ -30,26 +30,31 @@ Route::post('api/:version/user/prediction/answer','api/:version.UserPrediction/a
 //发布预测
 Route::post('api/:version/user/prediction/release','api/:version.Prediction/addPrediction');
 //查询用户提交的预测话题
-Route::post('api/:version/user/prediction','api/:version.UserPrediction/getPredictionByUserId');
-//获取预测话题 所有
-Route::get('api/:version/prediction/all','api/:version.Prediction/getAllPrediction');
-//获取预测话题 通过id
-Route::get('api/:version/prediction/:id','api/:version.Prediction/getPredictionById',[],['id'=>'\d+']);
-//获取预测话题历史值
-Route::get('api/:version/prediction/history/:id','api/:version.Prediction/getHistoryPredictionById');
-//搜索话题
-Route::get('api/:version/prediction/search/:title','api/:version.Prediction/searchPrediction');
-//查看个人发布的预测话题
-Route::get('api/:version/prediction/personal', 'api/:version.Prediction/getAllPersonalPrediction');
+Route::post('api/:version/user/prediction/self','api/:version.UserPrediction/getPredictionByUserId');
+//分组
+Route::group('api/:version/prediction',function(){
+    Route::get('/all','api/:version.Prediction/getAllPrediction');//获取预测话题 所有
+    Route::get('/:id','api/:version.Prediction/getPredictionById',[],['id'=>'\d+']);//获取预测话题 通过id
+    //获取预测话题历史值
+    Route::get('/history/:id','api/:version.Prediction/getHistoryPredictionById');
+    //搜索话题
+    Route::get('/search/:title','api/:version.Prediction/searchPrediction');
+    //查看个人发布的预测话题
+    Route::get('/personal', 'api/:version.Prediction/getAllPersonalPrediction');
+});
+
 //结束预测
 Route::post('api/:version/prediction/end','api/:version.Prediction/endPersonalPrediction');
-
+//历史曲线查询
+Route::get('api/:version/prediction/record','api/:version.HistoryRecord/getRecord');
 
 
 // +-----------------------------------------------------------------------
 // 分享经验
 // +-----------------------------------------------------------------------
 Route::get('api/:version/experience/simple/:num','api/:version.Experience/getSimpleExperience');
+//发布经验
+Route::post('api/:version/user/experience/release','api/:version.Experience/addExperience');
 
 // +-----------------------------------------------------------------------
 // 排行榜得分
@@ -65,6 +70,18 @@ Route::get('api/:version/Top/:num','api/:version.Top/getTop');
 // +-----------------------------------------------------------------------
 //评论经验分享
 Route::post('api/:version/user/experience/comment','api/:version.Comment/commentExperience');
+Route::post('api/:version/user/prediction/comment','api/:version.Comment/commentPrediction');
+Route::post('api/:version/user/course/comment','api/:version.Comment/commentCourse');
+
+
+// +-----------------------------------------------------------------------
+// 点赞
+// +-----------------------------------------------------------------------
+//点赞
+Route::get('api/:version/user/user/love','api/:version.User/love');
+Route::get('api/:version/user/comment/love','api/:version.Comment/love');
+
+
 
 // +-----------------------------------------------------------------------
 // 用户
@@ -83,7 +100,10 @@ Route::get('api/:version/user/prediction/:predictionid','api/:version.UserPredic
 Route::get('api/:version/user/experience/personal','api/:version.Experience/getPersonalExperience');
 //查看个人经验分享的详细信息
 Route::get('api/:version/user/experience/detail/:id','api/:version.Experience/getPersonalExperienceById');
-
+//关注
+Route::get('api/:version/user/user/attention','api/:version.User/attention');
+//查询是否关注
+Route::get('api/:version/user/user/judgment','api/:version.User/isAttention');
 
 
 // +-----------------------------------------------------------------------
@@ -94,7 +114,13 @@ Route::get('api/:version/question/simple/:num','api/:version.Question/getSimpleQ
 // 通过id获取问题
 Route::get('api/:version/question/:id','api/:version.Question/getQuestionById',[],['id' => '\d+']);
 
-
+// +-----------------------------------------------------------------------
+// 预言家课堂
+// +-----------------------------------------------------------------------
+//获取所有的常见问题
+Route::get('api/:version/course/simple/:num','api/:version.Course/getSimpleCourse');
+// 通过id获取问题
+Route::get('api/:version/course/:id','api/:version.Course/getCourseById',[],['id' => '\d+']);
 
 // +-----------------------------------------------------------------------
 // 意见反馈
