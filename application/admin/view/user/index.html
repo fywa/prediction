@@ -29,18 +29,16 @@
                     <a href="{:url('detail',['id' => $vo.id])}">
                         <div class="col-sm-4">
                             <div class="text-center">
-                                <img alt="image" class="img-circle m-t-xs img-responsive" src="__STATIC__/img/a4.jpg">
+                                <img alt="image" class="img-circle m-t-xs img-responsive" src="{:$vo.head_img}">
                                 <div class="m-t-xs font-bold">{$vo.username}</div>
                             </div>
                         </div>
                         <div class="col-sm-8">
-                            <h3><strong>{$vo.username}</strong></h3>
+                            <h3><strong>{$vo.nickname}</strong></h3>
                             <p><i class="fa fa-map-marker"></i> {$vo.job}</p>
                             <address>
-                            <strong>Baidu, Inc.</strong><br>
-                            E-mail:xxx@baidu.com<br>
-                            Weibo:<a href="">http://weibo.com/xxx</a><br>
-                            <abbr title="Phone">Tel:</abbr> (123) 456-7890
+                            <strong>{$vo.education}.</strong><br>
+                            {$vo.signature}
                         </address>
                         </div>
                         <div class="clearfix"> 

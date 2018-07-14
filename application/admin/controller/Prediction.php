@@ -61,7 +61,7 @@ class Prediction extends Base
         {
             $this->error('缺少id');
         }
-        $list = model(request()->controller())->getListByIdFromAdmin($id);
+        $list = model(request()->controller())->getListByIdByAdmin($id);
 
         return $this->fetch('',[
             'title' => '结束话题',

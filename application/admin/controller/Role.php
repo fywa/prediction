@@ -19,7 +19,7 @@ class Role extends Base
     public function index()
     {
         $co = input('get.status',1);
-        $list = $this->obj->getAllList(['status' => $co]);
+        $list = $this->obj->getAllListByAdmin(['status' => $co]);
         $this->assign([
             'title' => '角色列表',
             'list' => $list,

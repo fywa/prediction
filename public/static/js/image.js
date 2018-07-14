@@ -4,7 +4,7 @@ var fileM=document.querySelector("#file_upload");
 	    var formData = new FormData();
 	    formData.append('file', fileObj);
 	    $.ajax({
-	        url: COMMON.image_url,
+	        url: SCOPE.image_url,
 	        type: "post",
 	        dataType: "json",
 	        data: formData,

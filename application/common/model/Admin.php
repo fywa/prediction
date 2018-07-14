@@ -56,7 +56,7 @@ class Admin extends BaseModel
     /**
      * 获取更新的条件
      */
-    public function getListById($id = 0)
+    public function getListByIdByAdmin($id = 0)
     {
         $where['status'] = 1;
         $role = model('role')->getAllList();

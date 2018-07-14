@@ -28,7 +28,7 @@ class User extends Base
         {
             $where['username'] = ['like',"%{$keywords}%"];
         }
-        $list = $this->obj->getAllList($where);
+        $list = $this->obj->getAllListByAdmin($where);
         $this->assign([
             'title' => '用户列表',
             'list' => $list,

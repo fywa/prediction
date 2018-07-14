@@ -23,7 +23,7 @@ class Featured extends Base
     public function index()
     {
         $co = input('get.type',0);
-        $list = $this->obj->getAllList(['type' => $co]);
+        $list = $this->obj->getAllListByAdmin(['type' => $co]);
         $this->assign([
             'title' => '推荐位列表',
             'list' => $list,

@@ -11,6 +11,23 @@ class BaseModel extends Model
     public static $normal = ['status' => 1];
     public static $pause = ['status' => 0];
     /**
+     * 获取所有列表
+     */
+    public function getAllListByAdmin($where = ['status' => 1],$order = ['id' => 'asc'])
+    {
+        return $this->where($where)
+            ->order($order)
+            ->paginate();
+    }
+    /**
+     * 根据id查询
+     */
+    public function getListByIdByAdmin($id)
+    {
+        $where['status'] = 1;
+        return $this->where($where)->find($id);
+    }
+    /**
      * 修改状态
      */
     public function updateStatus()
@@ -26,14 +43,7 @@ class BaseModel extends Model
         $where['status'] = 1;
         return $this->where($where)->find($id);
     }
-    /**
-     * 根据id查询
-     */
-    public function getListByIdFromAdmin($id)
-    {
-        $where['status'] = 1;
-        return $this->where($where)->find($id);
-    }
+
     /**
      * 更新
      */
